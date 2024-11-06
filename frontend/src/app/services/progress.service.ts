@@ -21,7 +21,7 @@ export class ProgressService {
   }
 
   async getById(id: string) {
-    const dto = await this.client.collection(this.entityName).getFullList({ sort: '-created', filter: "'id' :" + id });
+    const dto = await this.client.collection(this.entityName).getOne(id);
     return dto;
   }
 

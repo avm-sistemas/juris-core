@@ -4,7 +4,7 @@
 <div class="container">
     <div>
         <mat-toolbar class="toolbar-color-sub py-5 mb-4">
-            <button matButton>New</button>
+            <button matButton (click)="openDialog(null, CRUDMODE.CREATE)">New</button>
         </mat-toolbar>
     </div>
     <div style="padding: 0px;text-align: center;">
@@ -28,7 +28,9 @@
                         <td>{{ obj.cpfCnpj }}</td>
                         <td>{{ obj.telefone }}</td>
                         <td>{{ obj.email | date: 'dd/MM/yyyy' }}</td>
-                        <td><button matButton>View</button>&nbsp;<button matButton>Edit</button>&nbsp;<button matButton>Delete</button></td>
+                        <td><button matButton (click)="openDialog(obj.id, CRUDMODE.READ)">View</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.UPDATE)">Edit</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.DELETE)">Delete</button></td>
                     </tr>    
                 </tbody>
             </table>
@@ -37,7 +39,7 @@
                 <thead>
                     <tr class="toolbar-color-sub">
                         <th>Name</th>
-                        <th style="width: 150px;">CPF / CNPJ</th>
+                        <th style="width: 150px;">VAT</th>
                         <th  style="width: 150px;">Telephone</th>
                         <th>E-Mail</th>                    
                         <th style="width: 150px;">Updated</th>

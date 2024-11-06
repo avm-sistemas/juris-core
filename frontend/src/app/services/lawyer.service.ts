@@ -21,7 +21,7 @@ export class LawyerService {
   }
 
   async getById(id: string) {
-    const lawyer = await this.client.collection(this.entityName).getFullList({ sort: '-created', filter: "'id' :" + id });
+    const lawyer = await this.client.collection(this.entityName).getOne(id);
     return lawyer;
   }
 
@@ -31,12 +31,12 @@ export class LawyerService {
   }
 
   async update(dto: LawyerDto) {
-    const lawyer = await this.client.collection(this.entityName).update(dto);
+    const lawyer = await this.client.collection(this.entityName).update(dto.id, dto);
     return lawyer;
   }
 
   async delete(dto: LawyerDto) {
-    const lawyer = await this.client.collection(this.entityName).delete(dto);
+    const lawyer = await this.client.collection(this.entityName).delete(dto.id);
     return lawyer;
   }  
 

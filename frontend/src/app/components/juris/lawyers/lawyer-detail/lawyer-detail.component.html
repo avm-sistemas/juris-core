@@ -1,0 +1,38 @@
+<div style="padding: 30px;">
+    <form [formGroup]="lawyerDetailForm">
+    
+        <div style="padding-top: 10px;">
+            <mat-label>Name</mat-label><br>
+            <label>
+                <input matInput formControlName="name" type="text" placeholder="John Doe" style="width: 100%;line-height: 25px;">
+            </label>                        
+        </div>
+        
+        <div style="padding-top: 10px;">
+            <mat-label>OAB</mat-label><br>
+            <label>
+                <input matInput formControlName="oab" type="text" placeholder="" style="width: 100%;line-height: 25px;">
+            </label>                                                                
+        </div>
+    
+        <div style="padding-top: 10px;">
+            <mat-label>Telephone</mat-label><br>
+            <label>
+                <input matInput formControlName="telephone" type="email" placeholder="" style="width: 100%;line-height: 25px;">
+            </label>                                                    
+        </div>                        
+        
+        <div style="padding-top: 10px;">
+            <mat-label>E-Mail</mat-label><br>
+            <label>
+                <input matInput formControlName="email" type="email" placeholder="" style="width: 100%;line-height: 25px;">
+            </label>                                                    
+        </div>                        
+    
+        <div style="padding-top: 20px;">            
+            <button mat-raised-button (click)="close()" style="color:darkred">Close</button>            
+            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">Store</button>
+        </div>                    
+    
+    </form>    
+</div>
