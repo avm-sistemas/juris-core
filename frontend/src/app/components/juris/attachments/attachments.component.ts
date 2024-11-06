@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AttachmentDto } from '../../../dtos/attachment.dto';
 import { BehaviorSubject } from 'rxjs';
 import { AttachmentService } from '../../../services/attachment.service';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CommonModule, NgFor } from '@angular/common';
+import { CrudMode } from '../../../enums/crud-mode.enum';
+import { AttachmentDetailComponent } from './attachment-detail/attachment-detail.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-attachments',
   standalone: true,
-  imports: [ CommonModule, NgFor, MatToolbarModule ],
+  imports: [ CommonModule, NgFor, MatToolbarModule, MatDialogModule ],
   templateUrl: './attachments.component.html',
   styleUrl: './attachments.component.scss'
 })
 export class AttachmentsComponent {
+  CRUDMODE = CrudMode;
+  private readonly dialog = inject(MatDialog);
 
   private data: BehaviorSubject<AttachmentDto[]> = new BehaviorSubject<AttachmentDto[]>([]);
   public data$ = this.data.asObservable()
@@ -39,5 +44,24 @@ export class AttachmentsComponent {
       }
     );    
   }
+
+  openDialog(id: any, mode: CrudMode): void {    
+    const dialogRef = this.dialog.open(AttachmentDetailComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '80%',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {      
+      if (result !== undefined) {
+        this.load();
+        this.toast.info(result);
+      }
+    });
+  }  
+
 
 }

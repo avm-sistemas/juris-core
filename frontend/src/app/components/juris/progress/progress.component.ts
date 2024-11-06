@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProgressDto } from '../../../dtos/progress.dto';
 import { ProgressService } from '../../../services/progress.service';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule, NgFor } from '@angular/common';
+import { ProgressDetailComponent } from './progress-detail/progress-detail.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CrudMode } from '../../../enums/crud-mode.enum';
 
 @Component({
   selector: 'app-progress',
   standalone: true,
-  imports: [ CommonModule, NgFor, MatToolbarModule ],
+  imports: [ CommonModule, NgFor, MatToolbarModule, MatDialogModule ],
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss'
 })
 export class ProgressComponent {
+  CRUDMODE = CrudMode;
+  private readonly dialog = inject(MatDialog);
 
   private data: BehaviorSubject<ProgressDto[]> = new BehaviorSubject<ProgressDto[]>([]);
   public data$ = this.data.asObservable()
@@ -39,5 +44,24 @@ export class ProgressComponent {
       }
     );    
   }
+
+
+  openDialog(id: any, mode: CrudMode): void {    
+    const dialogRef = this.dialog.open(ProgressDetailComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '80%',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {      
+      if (result !== undefined) {
+        this.load();
+        this.toast.info(result);
+      }
+    });
+  }    
 
 }

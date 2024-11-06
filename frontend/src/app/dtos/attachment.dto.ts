@@ -7,6 +7,7 @@ export class AttachmentDto {
     descricao: string;
     conteudo: string;
     mime: string;
+    tamanho: number;
 
     processo?: any;
 
@@ -15,5 +16,6 @@ export class AttachmentDto {
         this.descricao = '';
         this.conteudo = '';
         this.mime = '';
+        this.tamanho = 0;
     }
 }
