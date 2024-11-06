@@ -31,7 +31,7 @@ export class CustomerService {
   }
 
   async update(dto: CustomerDto) {
-    const response = await this.client.collection(this.entityName).update(dto);
+    const response = await this.client.collection(this.entityName).update(dto.id, dto);
     return response;
   }
 

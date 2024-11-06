@@ -14,6 +14,8 @@ export class ProcessDto {
     anexos?: any[];
     advogados?: any[];
 
+    expand?: any;
+
     constructor() {
         this.numero = '';
         this.status = '';

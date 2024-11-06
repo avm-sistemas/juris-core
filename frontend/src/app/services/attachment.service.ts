@@ -31,7 +31,7 @@ export class AttachmentService {
   }
 
   async update(dto: AttachmentDto) {
-    const response = await this.client.collection(this.entityName).update(dto);
+    const response = await this.client.collection(this.entityName).update(dto.id, dto);
     return response;
   }
 

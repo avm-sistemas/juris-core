@@ -8,13 +8,12 @@ export class LawyerDto {
     telefone: string;
     email: string;
 
-    processos?: any[];
+    expand?: any;
 
     constructor() {
         this.nome = '';
         this.oab = '';
         this.telefone = '';
-        this.email = '';
-        this.processos = [];
+        this.email = '';        
     }
 }

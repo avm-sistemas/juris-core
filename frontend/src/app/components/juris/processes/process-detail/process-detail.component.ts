@@ -7,6 +7,12 @@ import { ProcessDto } from '../../../../dtos/process.dto';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
+import { LawyerDto } from '../../../../dtos/lawyer.dto';
+import { ProgressDto } from '../../../../dtos/progress.dto';
+import { AttachmentDto } from '../../../../dtos/attachment.dto';
+import { PartiesInvolvedDto } from '../../../../dtos/parties-involved.dto';
+import { BehaviorSubject } from 'rxjs';
+import { CustomerDto } from '../../../../dtos/customer.dto';
 
 @Component({
   selector: 'app-process-detail',
@@ -24,6 +30,21 @@ export class ProcessDetailComponent {
 
   detailForm: FormGroup = this.createForm();
 
+  private advogados: BehaviorSubject<LawyerDto[]> = new BehaviorSubject<LawyerDto[]>([]);
+  public advogados$ = this.advogados.asObservable();
+
+  private andamentos: BehaviorSubject<ProgressDto[]> = new BehaviorSubject<ProgressDto[]>([]);
+  public andamentos$ = this.andamentos.asObservable();
+  
+  private anexos: BehaviorSubject<AttachmentDto[]> = new BehaviorSubject<AttachmentDto[]>([]);
+  public anexos$ = this.anexos.asObservable();
+  
+  private partes_envolvidas: BehaviorSubject<PartiesInvolvedDto[]> = new BehaviorSubject<PartiesInvolvedDto[]>([]);
+  public partes_envolvidas$ = this.partes_envolvidas.asObservable();
+
+  private customers: BehaviorSubject<CustomerDto[]> = new BehaviorSubject<CustomerDto[]>([]);
+  public customers$ = this.customers.asObservable();
+
   constructor(private readonly service: ProcessService,
               private readonly toast: HotToastService) {
   }
@@ -37,7 +58,18 @@ export class ProcessDetailComponent {
         this.service.getById(id).then(
           (response: any) => {
             if (response) {
-              this.detailForm = this.updateForm(response.id, response.descricao, response.numero, response.status, response.tipo);
+              console.log("response => ", response)
+              this.detailForm = this.updateForm(response.id, response.descricao, response.numero, response.status, response.tipo,
+                                                response.advogados, response.andamentos, response.anexos, response.partes);
+
+              this.fillDataSets(response.expand);
+              /*
+              this.advogados = response.advogados;
+              this.andamentos = response.andamentos;
+              this.anexos = response.anexos;
+              this.partes_envolvidas = response.partes_envolvidas;
+              */
+
               if (this.mode == CrudMode.READ) {
                 this.detailForm.disable();
               }
@@ -52,6 +84,23 @@ export class ProcessDetailComponent {
     }
   }
 
+  fillDataSets(response: any) {
+    this.advogados.next([]);
+    this.advogados.next(response.advogados);
+
+    this.andamentos.next([]);
+    this.andamentos.next(response.andamentos);
+
+    this.anexos.next([]);
+    this.anexos.next(response.anexos);
+
+    this.partes_envolvidas.next([]);
+    this.partes_envolvidas.next(response.partes_envolvidas);
+
+    this.customers.next([]);
+    this.customers.next(response.customers);
+  }
+
   createForm(): FormGroup {
     return new FormGroup({
       id: new FormControl(''),
@@ -59,16 +108,26 @@ export class ProcessDetailComponent {
       numero: new FormControl(''),
       status: new FormControl(''),
       tipo: new FormControl(''),
+      //advogados: new FormControl([]),
+      //andamentos: new FormControl([]),
+      //anexos: new FormControl([]),
+      //partes_envolvidas: new FormControl([]),
+      expand: new FormControl()
     })
   }
 
-  updateForm(id: string, descricao: string, numero: string, status: string, tipo: string): FormGroup {    
+  updateForm(id: string, descricao: string, numero: string, status: string, tipo: string, advogados?: any[], andamentos?: any[], anexos?: any[], partes?: any[], expand?: any): FormGroup {    
     return new FormGroup({
       id: new FormControl(id),
       descricao: new FormControl(descricao),
       numero: new FormControl(numero),
       status: new FormControl(status),
       tipo: new FormControl(tipo),
+      //advogados: new FormControl(advogados),
+      //andamentos: new FormControl(andamentos),
+      //anexos: new FormControl(anexos),
+      //partes_envolvidas: new FormControl(partes),
+      //expand: new FormControl(expand)
     });
   }
 

@@ -9,7 +9,7 @@ export class CustomerDto {
     telefone: string;
     email: string;
 
-    processo?: any;
+    expand?: any;
 
     constructor() {
         this.nome = '';

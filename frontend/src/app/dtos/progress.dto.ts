@@ -7,7 +7,7 @@ export class ProgressDto {
     dataAndamento?: Date;
     statusAtual: string;    
     
-    processo: any;
+    expand?: any;
 
     constructor() {
         this.statusAtual = '';

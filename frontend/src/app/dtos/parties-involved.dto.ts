@@ -5,7 +5,7 @@ export class PartiesInvolvedDto {
 
     nome: string;
 
-    processo?: any;
+    expand?: any;
 
     constructor() {
         this.nome = '';

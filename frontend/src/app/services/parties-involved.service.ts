@@ -31,7 +31,7 @@ export class PartiesInvolvedService {
   }
 
   async update(dto: PartiesInvolvedDto) {
-    const response = await this.client.collection(this.entityName).update(dto);
+    const response = await this.client.collection(this.entityName).update(dto.id, dto);
     return response;
   }
 

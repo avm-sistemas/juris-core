@@ -21,7 +21,7 @@ export class ProcessService {
   }
 
   async getById(id: string) {
-    const dto = await this.client.collection(this.entityName).getOne(id);
+    const dto = await this.client.collection(this.entityName).getOne(id, { expand: "advogados, andamentos, partes_envolvidas, anexos" });
     return dto;
   }
 
@@ -31,7 +31,7 @@ export class ProcessService {
   }
 
   async update(dto: ProcessDto) {
-    const response = await this.client.collection(this.entityName).update(dto);
+    const response = await this.client.collection(this.entityName).update(dto.id, dto);
     return response;
   }
 
