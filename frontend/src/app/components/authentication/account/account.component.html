@@ -1,0 +1,129 @@
+<mat-toolbar class="toolbar-color py-5 mb-4">
+    <span class="center">USER ACCOUNT</span>
+</mat-toolbar>
+
+<div class="container">
+
+<div *ngIf="logged">
+    <div style="padding: 30px;">
+        <mat-card appearance="outlined" title="Status">
+            <!--<img mat-card-image src="../">-->
+            <mat-card-header>
+                <mat-card-title>{{ this.user?.name }}</mat-card-title>
+                <mat-card-subtitle>{{ this.user?.username }} connected</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div style="padding-top: 10px;">
+                    <p>Name: {{ this.user?.name }}</p>
+                    <p>Email: {{ this.user?.email }} </p>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+        </mat-card>        
+    </div>
+</div>
+
+<div *ngIf="logged" style="margin-top: 50px;">
+
+    <div style="padding: 30px;">
+
+        
+        <div style="background-color: gray;color:white;cursor: pointer;" routerLink="/customers">
+            <button mat-icon-button routerLink="/customers" routerLinkActive="router-link-active" style="margin-top:8px" title="Customers">
+                <mat-icon style="color:white">people</mat-icon>
+                <span style="color:white">Customers</span>
+            </button>
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: gray;cursor: pointer;" routerLink="/lawyers">
+            <button mat-icon-button routerLink="/files" routerLinkActive="router-link-active" routerLink="/register" routerLinkActive="router-link-active" style="margin-top:8px;" title="Register">
+                <mat-icon style="color:white;">people</mat-icon>
+                <span style="color:white">Lawyers</span>
+            </button>
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: gray;cursor: pointer;" routerLink="/parties-involved">
+            <button mat-icon-button routerLink="/parties-involved" routerLinkActive="router-link-active" routerLink="/parties-involved" routerLinkActive="router-link-active" style="margin-top:8px;" title="Parties Involved">
+                <mat-icon style="color:white;">people</mat-icon>
+                <span style="color:white">Parties Involved</span>
+            </button>
+        </div>
+
+        <div style="height: 20px;"></div>
+        <div style="background-color: gray;color:white;padding-top: 10px;cursor: pointer;" routerLink="/processes">
+            <button mat-icon-button routerLink="/processes" routerLinkActive="router-link-active" style="margin-top:8px" title="Processes">
+                <mat-icon style="color:white">account_tree</mat-icon>
+                <span style="color:white">Processes</span>
+            </button>
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: gray;color:white;cursor: pointer;" routerLink="/progress">
+            <button mat-icon-button routerLink="/progress" routerLinkActive="router-link-active" style="margin-top:8px" title="Progress">
+                <mat-icon style="color:white">rule_settings</mat-icon>
+                <span style="color:white">Progress</span>
+            </button>            
+        </div>        
+        <div style="height: 10px;"></div>
+        <div style="background-color: gray;cursor: pointer;" routerLink="/attachments">
+            <button mat-icon-button routerLink="/parties-involved" routerLinkActive="router-link-active" routerLink="/attachments" routerLinkActive="router-link-active" style="margin-top:8px;" title="Attachments">
+                <mat-icon style="color:white;">inventory_2</mat-icon>
+                <span style="color:white">Attachments</span>
+            </button>
+        </div>
+        
+    </div>
+
+    <div style="padding: 20px;">
+
+        <div style="background-color: yellowgreen;cursor: pointer;" routerLink="/files">
+            <button mat-icon-button routerLink="/files" routerLinkActive="router-link-active" routerLink="/register" routerLinkActive="router-link-active" style="margin-top:8px;" title="Register">                        
+                <mat-icon>inventory_2</mat-icon>                                                
+                <span style="color:black">Files</span>
+            </button>    
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: yellow;padding-top: 10px;cursor: pointer;" routerLink="/notifications">
+            <button mat-icon-button routerLink="/notifications" routerLinkActive="router-link-active" style="margin-top:8px" title="Notifications">
+                <mat-icon>bolt</mat-icon>
+                <span style="color:black">Notifications</span>
+            </button>    
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: lightsalmon;cursor: pointer;" (click)="logout()">
+            <button mat-icon-button (click)="logout()" routerLinkActive="router-link-active" style="margin-top:8px" title="Logout">
+                <mat-icon>logout</mat-icon>
+                <span style="color:black">Logout</span>
+            </button>            
+        </div>
+        
+    </div>
+
+</div>
+
+<div *ngIf="!logged" style="margin-top: 50px;">
+    <div style="padding: 30px;">
+
+        <div style="background-color: yellowgreen;cursor: pointer;" routerLink="/register">
+            <button mat-icon-button routerLink="/register" routerLinkActive="router-link-active" routerLink="/register" routerLinkActive="router-link-active" style="margin-top:8px;" title="Register">                        
+                <mat-icon>app_registration</mat-icon>                                                
+                <span style="color:black">Register</span>
+            </button>    
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: yellow;padding-top: 10px;cursor: pointer;" routerLink="/login">
+            <button mat-icon-button routerLink="/login" routerLinkActive="router-link-active" style="margin-top:8px" title="Login">
+                <mat-icon>login</mat-icon>
+                <span style="color:black">Login</span>
+            </button>    
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: lightsalmon;cursor: pointer;" routerLink="/recover">
+            <button mat-icon-button routerLink="/recover" routerLinkActive="router-link-active" style="margin-top:8px" title="Recover">
+                <mat-icon>settings</mat-icon>
+                <span style="color:black">Recover</span>
+            </button>            
+        </div>
+        
+    </div>        
+</div>

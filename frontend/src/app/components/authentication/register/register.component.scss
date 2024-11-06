@@ -1,0 +1,37 @@
+html, body { 
+    height: 100%; 
+}
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::ng-deep .navbar-color {background-color: #494d50; color: white;}
+::ng-deep .router-link-active {background-color: #414548;}
+::ng-deep .no-border {border-radius: 0px;}
+
+::ng-deep .toolbar-color { background-color: #616466; color: white; }
+::ng-deep .center {
+margin-left: auto;
+margin-right: auto;
+}
+::ng-deep .v-center {
+margin-top: auto;
+margin-bottom: auto;
+}
+
+::ng-deep .txt-bold {font-weight: bold;}
+
+::ng-deep .selected {background-color: gainsboro;}
+
+::ng-deep p {
+font-family: Lato;
+}
+
+::ng-deep .mat-icon {
+  font-size: 25px;
+}
+
+::ng-deep mat-label {
+    color: black;
+}

@@ -1,0 +1,38 @@
+<div fxLayout="column" fxFlexFill>
+  <mat-toolbar class="navbar-color mat-elevation-z8 p-0" fxLayout="row" fxLayoutAlign="start stretch" style="z-index: 2">
+    
+    <button mat-icon-button (click)="drawer.toggle()" style="margin-top:8px">
+      <mat-icon class="mat-icon" fontIcon="menu" style="color:white"></mat-icon>
+    </button>
+    
+    <button mat-icon-button routerLink="/" routerLink="/" routerLinkActive="router-link-active" style="margin-top:8px">
+      <mat-icon [fontIcon]="'home'" style="color:white"></mat-icon>
+    </button>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="pl-3" style="margin-left: 30px;">
+      <span>Juris Core</span>
+    </div>
+
+    <span fxFlex></span>
+
+    <div fxLayout="row" fxShow="false" fxShow.gt-xs>
+      <button *ngFor="let m of menu" mat-button [routerLink]="m.url" routerLinkActive="router-link-active no-border" style="color: white !important"><mat-icon *ngIf="m.icon === 'account_circle'">account_circle</mat-icon>{{ m.title }}</button>
+    </div>
+  </mat-toolbar>
+
+  <mat-drawer-container fxFlex autosize class="background">
+    <mat-drawer #drawer style="margin-top: 10px">
+      <div fxLayout="column" style="margin-top: 10px; top: 10px">
+        <button *ngFor="let m of menu" mat-button [routerLink]="m.url" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
+          <mat-icon class="mr-2">{{ m.icon }}</mat-icon>{{ m.title }}</button>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-drawer>
+
+    <!--PAGES-->
+    <div style="display: inline;">      
+        <router-outlet></router-outlet>        
+    </div>
+
+  </mat-drawer-container>
+</div>
