@@ -39,13 +39,12 @@ export class AccountComponent {
   constructor(private readonly store: StoreService, 
               private readonly auth: AuthService,
               private readonly router: Router) {  
-    this.user = this.store.getPocketBaseAuthToken();    
-
-    this.logged = this.user !== null;
+    this.user = this.store.getPocketBaseAuthToken();                    
+    this.logged = this.user !== null && this.user !== undefined;
   }
 
   logout() {    
-    this.auth.logout();    
+    this.auth.logout();
   }
 
 }

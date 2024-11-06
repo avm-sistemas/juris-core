@@ -7,6 +7,7 @@ import { AngularMaterialModule } from '../modules/angular-material.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
 import {LayoutModule} from '@angular/cdk/layout';
+import { StoreService } from '../services/store.service';
 
 @Component({
   selector: 'app-root',
@@ -21,39 +22,40 @@ import {LayoutModule} from '@angular/cdk/layout';
 export class AppComponent implements OnInit {
 
   menu: any[] = [];
+  
+  topMenu: any[] = [];
 
-  constructor(private readonly auth: AuthService) {
+  constructor(private readonly auth: AuthService,
+              private readonly store: StoreService) {
 
   }
 
   ngOnInit(): void {
+    this.createTopMenu();
     this.createMenu();  
-
-    if (this.auth.isAuthenticated()) {      
-        this.menu.push({
-          title: 'Account', //this.auth.user.name,
-          url: '/user',
-          icon: 'account_circle'
-        })        
-    } else {
-      this.menu.push({
-        title: 'Account',
-        url: '/user',
-        icon: 'account_circle'
-      });
-    };
   }
 
-  async createMenu() {
-    this.menu = [
-      {
-        title: 'Home',
-        url: '/home',
-        icon: 'home'
-      }
+  private async createMenu() {
+    this.menu = [];
+    this.menu.push({ title: 'Home', url: '/home', icon: 'home' });
+    this.menu.push({ title: 'Account', url: '/user', icon: 'account_circle' });
 
-    ];
-    
+    const authenticated = this.store.isSet();
+    if (authenticated) {
+      this.menu.push({ title: 'Customers', url: '/customers', icon: 'people' });
+      this.menu.push({ title: 'Lawyers', url: '/lawyers', icon: 'people' });
+      this.menu.push({ title: 'Parties Involved', url: '/parties-involved', icon: 'people'});
+      this.menu.push({ title: 'Processes', url: '/processes', icon: 'account_tree' });
+      this.menu.push({ title: 'Progress',  url: '/progress', icon: 'rule_settings' });
+      this.menu.push({ title: 'Customer Service', url: '/customer-service', icon: 'today'});
+      this.menu.push({ title: 'Scheduler', url: '/scheduler', icon: 'calendar_month' });  
+    }
+  }
+
+  private async createTopMenu() {
+    this.topMenu = [];
+    this.topMenu.push({ title: 'Home', url: '/home', icon: 'home' });
+    this.topMenu.push({ title: 'Account', url: '/user', icon: 'account_circle' });
   }
 
 }

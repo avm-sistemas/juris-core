@@ -11,8 +11,7 @@ export class StoreService {
 
   user: any;
 
-  constructor() { 
-    //this.load();
+  constructor() {     
     this.getPocketBaseAuthToken();
   }
 
@@ -25,8 +24,6 @@ export class StoreService {
     }
     return this.user;
   }
-
-
 
   isSet(): boolean {    
     const pba = this.getPocketBaseAuthToken();    
