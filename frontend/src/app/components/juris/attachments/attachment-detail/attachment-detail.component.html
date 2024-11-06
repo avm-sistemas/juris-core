@@ -1,1 +1,17 @@
-<p>attachment-detail works!</p>
+<div style="padding: 30px;">
+    <form [formGroup]="detailForm">
+    
+        <div style="padding-top: 10px;">
+            <mat-label>Upload</mat-label><br>
+            <label>
+                <input matInput type="file"  style="width: 100%;line-height: 25px;">
+            </label>                        
+        </div>
+            
+        <div style="padding-top: 20px;">            
+            <button mat-raised-button (click)="close()" style="color:darkred">Close</button>            
+            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">Store</button>
+        </div>                    
+    
+    </form>    
+</div>

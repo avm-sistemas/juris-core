@@ -57,10 +57,10 @@ export class ProgressComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {      
-      if (result !== undefined) {
-        this.load();
+      if (result !== undefined) {        
         this.toast.info(result);
       }
+      this.load();
     });
   }    
 

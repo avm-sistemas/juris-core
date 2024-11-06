@@ -1,1 +1,31 @@
-<p>progress-detail works!</p>
+<div style="padding: 30px;">
+    <form [formGroup]="detailForm">
+    
+        <div style="padding-top: 10px;">
+            <mat-label>Description</mat-label><br>
+            <label>
+                <input matInput formControlName="descricao" type="text" placeholder="" style="width: 100%;line-height: 25px;">
+            </label>                                                                
+        </div>
+
+        <div style="padding-top: 10px;">
+            <mat-label>Data</mat-label><br>
+            <label>
+                <input matInput formControlName="dataAndamento" type="date" placeholder="" style="width: 100%;line-height: 25px;">
+            </label>                                                    
+        </div>                        
+        
+        <div style="padding-top: 10px;">
+            <mat-label>Status</mat-label><br>
+            <label>
+                <input matInput formControlName="statusAtual" type="text" placeholder="" style="width: 100%;line-height: 25px;">
+            </label>                                                    
+        </div>                        
+            
+        <div style="padding-top: 20px;">            
+            <button mat-raised-button (click)="close()" style="color:darkred">Close</button>            
+            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">Store</button>
+        </div>                    
+    
+    </form>    
+</div>

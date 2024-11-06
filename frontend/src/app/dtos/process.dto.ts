@@ -6,6 +6,7 @@ export class ProcessDto {
     numero: string;
     status: string;
     descricao: string;
+    tipo: string;
 
     cliente?: any;
     andamentos?: any[];
@@ -17,6 +18,7 @@ export class ProcessDto {
         this.numero = '';
         this.status = '';
         this.descricao = '';
+        this.tipo = '';
 
         this.andamentos = [];
         this.partes_envolvidas = [];
