@@ -18,11 +18,12 @@
                         <th>Description</th>
                         <th>Status</th>
                         <th style="width: 150px;">Updated</th>
+                        <th style="width: 160px;"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let obj of data$ | async">
-                        <td>{{ obj.dataAndamento }}</td>                    
+                        <td>{{ obj.dataAndamento | date: 'dd/MM/yyyy' }}</td>                    
                         <td>{{ obj.descricao }}</td>                    
                         <td>{{ obj.statusAtual }}</td>    
                         <td>{{ obj.updated | date: 'dd/MM/yyyy' }}</td>

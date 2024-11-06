@@ -37,7 +37,7 @@ export class ProcessDetailComponent {
         this.service.getById(id).then(
           (response: any) => {
             if (response) {
-              this.detailForm = this.updateForm(response.id, response.name, response.cpfCnpj, response.endereco, response.telefone, response.email, response.tipo);              
+              this.detailForm = this.updateForm(response.id, response.descricao, response.numero, response.status, response.tipo);
               if (this.mode == CrudMode.READ) {
                 this.detailForm.disable();
               }
@@ -55,24 +55,20 @@ export class ProcessDetailComponent {
   createForm(): FormGroup {
     return new FormGroup({
       id: new FormControl(''),
-      nome: new FormControl(''),
-      cpfCnpj: new FormControl(''),
-      endereco: new FormControl(''),
-      telefone: new FormControl(''),
-      email: new FormControl(''),
-      tipo: new FormControl('')
+      descricao: new FormControl(''),
+      numero: new FormControl(''),
+      status: new FormControl(''),
+      tipo: new FormControl(''),
     })
   }
 
-  updateForm(id: string, name: string, cpfCnpj: string, endereco: string, telefone: string, email: string, tipo: string): FormGroup {    
+  updateForm(id: string, descricao: string, numero: string, status: string, tipo: string): FormGroup {    
     return new FormGroup({
       id: new FormControl(id),
-      nome: new FormControl(name),
-      cpfCnpj: new FormControl(cpfCnpj),
-      endereco: new FormControl(endereco),
-      telefone: new FormControl(telefone),
-      email: new FormControl(email),
-      tipo: new FormControl(tipo)
+      descricao: new FormControl(descricao),
+      numero: new FormControl(numero),
+      status: new FormControl(status),
+      tipo: new FormControl(tipo),
     });
   }
 
@@ -92,7 +88,7 @@ export class ProcessDetailComponent {
 
         this.service.create(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer registered');
+            this.toast.success('Process registered');
             this.dialogRef.close();
           }
         ).catch(
@@ -114,7 +110,7 @@ export class ProcessDetailComponent {
 
         this.service.update(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer updated');    
+            this.toast.success('Process updated');    
             this.dialogRef.close();
           }
         ).catch(
@@ -136,7 +132,7 @@ export class ProcessDetailComponent {
 
         this.service.delete(dto).then(
           (response: any) => {            
-            this.toast.success('Lawyer deleted');
+            this.toast.success('Process deleted');
             this.dialogRef.close();
           }
         ).catch(
