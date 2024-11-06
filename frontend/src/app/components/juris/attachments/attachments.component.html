@@ -1,0 +1,41 @@
+<mat-toolbar class="toolbar-color py-5 mb-4">
+    <span class="center">ATTACHMENTS</span>
+</mat-toolbar>
+<div class="container">
+    <div>
+        <mat-toolbar class="toolbar-color-sub py-5 mb-4">
+            <button matButton>New</button>
+        </mat-toolbar>
+    </div>
+    <div style="padding: 0px;text-align: center;">
+
+        <div *ngIf="(data$ | async) as hasData">
+
+            <table style="width: 100%;" *ngIf="hasData.length > 0">
+                <thead>
+                    <tr class="toolbar-color-sub">
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th style="width: 150px;">Mime</th>
+                        <th style="width: 150px;">Updated</th>
+                        <th style="width: 150px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let obj of hasData">
+                        <td>{{ obj.nome }}</td>
+                        <td>{{ obj.descricao }}</td>
+                        <td>{{ obj.mime }}</td>
+                        <td>{{ obj.updated | date: 'dd/MM/yyyy' }}</td>
+                        <td><button matButton>View</button>&nbsp;<button matButton>Edit</button>&nbsp;<button matButton>Delete</button></td>
+                    </tr>    
+                </tbody>
+            </table>
+
+            <div *ngIf="hasData.length == 0" style="text-align: center;margin-top: 50px;">
+                <p style="color:black">No DATA to display</p>                
+            </div>
+
+        </div>
+    </div>
+</div>

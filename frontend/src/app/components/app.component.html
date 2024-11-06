@@ -16,7 +16,7 @@
     <span fxFlex></span>
 
     <div fxLayout="row" fxShow="false" fxShow.gt-xs>
-      <button *ngFor="let m of menu" mat-button [routerLink]="m.url" routerLinkActive="router-link-active no-border" style="color: white !important"><mat-icon *ngIf="m.icon === 'account_circle'">account_circle</mat-icon>{{ m.title }}</button>
+      <button *ngFor="let m of topMenu" mat-button [routerLink]="m.url" routerLinkActive="router-link-active no-border" style="color: white !important"><mat-icon *ngIf="m.icon === 'account_circle'">account_circle</mat-icon>{{ m.title }}</button>
     </div>
   </mat-toolbar>
 

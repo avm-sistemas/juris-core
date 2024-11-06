@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
-    <span class="center">USER ACCOUNT</span>
+    <span class="center">ACCOUNT</span>
 </mat-toolbar>
 
 <div class="container">
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div *ngIf="logged" style="margin-top: 50px;">
+<div *ngIf="logged">
 
     <div style="padding: 30px;">
 
@@ -71,7 +71,20 @@
                 <span style="color:white">Attachments</span>
             </button>
         </div>
-        
+        <div style="height: 10px;"></div>
+        <div style="background-color: gray;cursor: pointer;" routerLink="/custom-service">
+            <button mat-icon-button routerLink="/custom-service" routerLinkActive="router-link-active" routerLink="/custom-service" routerLinkActive="router-link-active" style="margin-top:8px;" title="Custom Service">
+                <mat-icon style="color:white;">today</mat-icon>
+                <span style="color:white">Custom Service</span>
+            </button>
+        </div>
+        <div style="height: 10px;"></div>
+        <div style="background-color: gray;cursor: pointer;" routerLink="/schedule">
+            <button mat-icon-button routerLink="/schedule" routerLinkActive="router-link-active" routerLink="/schedule" routerLinkActive="router-link-active" style="margin-top:8px;" title="Schedule">
+                <mat-icon style="color:white;">calendar_month</mat-icon>
+                <span style="color:white">Schedule</span>
+            </button>
+        </div>        
     </div>
 
     <div style="padding: 20px;">
@@ -101,7 +114,7 @@
 
 </div>
 
-<div *ngIf="!logged" style="margin-top: 50px;">
+<div *ngIf="!logged" style="margin-top: 10px;">
     <div style="padding: 30px;">
 
         <div style="background-color: yellowgreen;cursor: pointer;" routerLink="/register">

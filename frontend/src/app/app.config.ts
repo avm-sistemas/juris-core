@@ -6,6 +6,10 @@ import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/c
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHotToastConfig } from '@ngxpert/hot-toast';
 
+export const apiConfig = {
+  pbhost: 'http://127.0.0.1:8090'
+}
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
