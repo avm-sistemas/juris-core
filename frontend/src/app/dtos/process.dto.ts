@@ -6,6 +6,7 @@ export class ProcessDto {
     numero: string;
     status: string;
     descricao: string;
+    tipo: string;
 
     cliente?: any;
     andamentos?: any[];
@@ -13,10 +14,13 @@ export class ProcessDto {
     anexos?: any[];
     advogados?: any[];
 
+    expand?: any;
+
     constructor() {
         this.numero = '';
         this.status = '';
         this.descricao = '';
+        this.tipo = '';
 
         this.andamentos = [];
         this.partes_envolvidas = [];

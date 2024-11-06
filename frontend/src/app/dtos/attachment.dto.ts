@@ -11,6 +11,8 @@ export class AttachmentDto {
 
     processo?: any;
 
+    expand?: any;
+
     constructor() {
         this.nome = '';
         this.descricao = '';

@@ -51,15 +51,17 @@ export class ProcessesComponent {
         id: id,
         mode: mode
       },
-      width: '80%',
-      disableClose: true
+      width: '90%',
+      //height: '90%',
+      minWidth: '460px',
+      disableClose: true      
     });
 
     dialogRef.afterClosed().subscribe(result => {      
-      if (result !== undefined) {
-        this.load();
+      if (result !== undefined) {        
         this.toast.info(result);
       }
+      this.load();
     });
   }  
 

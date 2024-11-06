@@ -4,7 +4,7 @@
 <div class="container">
     <div>
         <mat-toolbar class="toolbar-color-sub py-5 mb-4">
-            <button matButton>New</button>
+            <button matButton (click)="openDialog(null, CRUDMODE.CREATE)">New</button>
         </mat-toolbar>
     </div>
     <div style="padding: 0px;text-align: center;">
@@ -23,7 +23,9 @@
                     <tr *ngFor="let obj of hasData">
                         <td>{{ obj.nome }}</td>
                         <td>{{ obj.updated | date: 'dd/MM/yyyy' }}</td>
-                        <td><button matButton>View</button>&nbsp;<button matButton>Edit</button>&nbsp;<button matButton>Delete</button></td>
+                        <td><button matButton (click)="openDialog(obj.id, CRUDMODE.READ)">View</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.UPDATE)">Edit</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.DELETE)">Delete</button></td>
                     </tr>    
                 </tbody>
             </table>
