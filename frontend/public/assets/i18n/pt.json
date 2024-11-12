@@ -104,7 +104,29 @@
     
     "detail:PROGRESS:Date": "Data",
     "detail:PROGRESS:Description": "Descrição",
-    "detail:PROGRESS:Status": "Status"
+    "detail:PROGRESS:Status": "Status",
+
+    "grid:PROCESS:TITLE": "Processos",    
+    "grid:PROCESS:Column:Code": "Número",
+    "grid:PROCESS:Column:Status": "Status",
+    "grid:PROCESS:Column:Description": "Descrição",
+    "grid:PROCESS:Column:Updated": "Actualizado",
+    
+    "detail:PROCESS:Code": "Número",
+    "detail:PROCESS:Status": "Status",
+    "detail:PROCESS:Description": "Descrição",
+    "detail:PROCESS:Tipo": "Tipo",
+
+    "detail:PROCESS:LAWYER:Name": "Nome",
+    "detail:PROCESS:LAWYER:E-Mail": "E-Mail",
+    "detail:PROCESS:Customer:Name": "Nome",
+    "detail:PROCESS:Customer:E-Mail": "E-Mail",
+    "detail:PROCESS:Customer:Telephone": "Telefone",
+    "detail:PROCESS:Parties:Name": "Nome",
+    "detail:PROCESS:Progress:Date": "Data",
+    "detail:PROCESS:Progress:Description": "Descrição",
+    "detail:PROCESS:Progress:Status": "Status",
+    "detail:PROCESS:Attachments:Name": "Nome"
 
 
 }

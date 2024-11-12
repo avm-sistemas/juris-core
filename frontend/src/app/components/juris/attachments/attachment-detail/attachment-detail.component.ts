@@ -7,7 +7,7 @@ import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { AttachmentService } from '../../../../services/attachment.service';
 import { AttachmentDto } from '../../../../dtos/attachment.dto';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-attachment-detail',
@@ -32,7 +32,8 @@ export class AttachmentDetailComponent {
   detailForm: FormGroup = this.createForm();
 
   constructor(private readonly service: AttachmentService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
   }
 
   ngOnInit(): void {
