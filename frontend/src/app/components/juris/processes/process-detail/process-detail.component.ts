@@ -13,11 +13,18 @@ import { AttachmentDto } from '../../../../dtos/attachment.dto';
 import { PartiesInvolvedDto } from '../../../../dtos/parties-involved.dto';
 import { BehaviorSubject } from 'rxjs';
 import { CustomerDto } from '../../../../dtos/customer.dto';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-process-detail',
   standalone: true,
-  imports: [ CommonModule, AngularMaterialModule, ReactiveFormsModule, FormsModule ],
+  imports: [ 
+    CommonModule, 
+    AngularMaterialModule, 
+    ReactiveFormsModule, 
+    FormsModule,
+    TranslateModule
+  ],
   templateUrl: './process-detail.component.html',
   styleUrl: './process-detail.component.scss'
 })

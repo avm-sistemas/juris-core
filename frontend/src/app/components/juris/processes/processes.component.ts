@@ -8,11 +8,18 @@ import { CommonModule, NgFor } from '@angular/common';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ProcessDetailComponent } from './process-detail/process-detail.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-processes',
   standalone: true,
-  imports: [ CommonModule, NgFor, MatToolbarModule, MatDialogModule ],
+  imports: [ 
+    CommonModule, 
+    NgFor, 
+    MatToolbarModule, 
+    MatDialogModule,
+    TranslateModule
+  ],
   templateUrl: './processes.component.html',
   styleUrl: './processes.component.scss'
 })

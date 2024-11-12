@@ -1,0 +1,26 @@
+{
+    "home:TITLE": "Controlo de Processos",
+    "home:HEADLINE": "Tenha todos os andamentos, registos de clientes, anexos e toda informação processual na palma da mão",
+    "home:CALL-BUTTON": "VAMOS A ISTO!",
+
+    "grid:VIEW": "Ver",
+    "grid:EDIT": "Editar",
+    "grid:DELETE": "Excluir",
+    "grid:NEW": "Novo",
+
+    "detail:CLOSE": "Fechar",
+    "detail:STORA" : "Gravar",
+
+    "grid:LAYER:TITLE": "ADVOGADOS",    
+    "grid:LAYER:Column:Name": "Nome",
+    "grid:LAYER:Column:OAB": "OAB",
+    "grid:LAYER:Column:Telephone": "Telefone",
+    "grid:LAYER:Column:E-Mail": "E-Mail",
+    "grid:LAYER:Column:Updated": "Actualizado",
+
+    "detail:LAYER:Name": "Nome",
+    "detail:LAYER:OAB": "OAB",
+    "detail:LAYER:Telephone": "Telefone",
+    "detail:LAYER:E-Mail": "E-Mail"
+
+}

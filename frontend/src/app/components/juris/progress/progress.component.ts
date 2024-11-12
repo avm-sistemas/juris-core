@@ -8,11 +8,18 @@ import { CommonModule, NgFor } from '@angular/common';
 import { ProgressDetailComponent } from './progress-detail/progress-detail.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CrudMode } from '../../../enums/crud-mode.enum';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-progress',
   standalone: true,
-  imports: [ CommonModule, NgFor, MatToolbarModule, MatDialogModule ],
+  imports: [ 
+    CommonModule, 
+    NgFor, 
+    MatToolbarModule, 
+    MatDialogModule,
+    TranslateModule
+  ],
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss'
 })

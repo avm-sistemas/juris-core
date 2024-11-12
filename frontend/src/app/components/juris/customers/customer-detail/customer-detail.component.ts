@@ -7,11 +7,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { CustomerService } from '../../../../services/customer.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-customer-detail',
   standalone: true,
-  imports: [ CommonModule, AngularMaterialModule, ReactiveFormsModule, FormsModule ],
+  imports: [ 
+    CommonModule, 
+    AngularMaterialModule, 
+    ReactiveFormsModule, 
+    FormsModule,
+    TranslateModule
+  ],
   templateUrl: './customer-detail.component.html',
   styleUrl: './customer-detail.component.scss'
 })

@@ -7,6 +7,7 @@ import { IUser } from '../../../interfaces/iuser.interface';
 import { User } from '../../../models/user.model';
 import { AngularMaterialModule } from '../../../modules/angular-material.module';
 import { HotToastService } from '@ngxpert/hot-toast';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,9 @@ import { HotToastService } from '@ngxpert/hot-toast';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule, 
-    RouterModule ],
+    RouterModule,
+    TranslateModule
+   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

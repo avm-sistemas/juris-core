@@ -7,6 +7,7 @@ import { AngularMaterialModule } from '../../../modules/angular-material.module'
 import { BehaviorSubject } from 'rxjs';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { StoreService } from '../../../services/store.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,9 @@ import { StoreService } from '../../../services/store.service';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule, 
-    RouterModule ],
+    RouterModule,
+    TranslateModule
+   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

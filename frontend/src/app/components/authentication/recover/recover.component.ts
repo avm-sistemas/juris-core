@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AngularMaterialModule } from '../../../modules/angular-material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recover',
@@ -16,7 +17,9 @@ import { AngularMaterialModule } from '../../../modules/angular-material.module'
     AngularMaterialModule,
     ReactiveFormsModule, 
     FormsModule, 
-    RouterModule ],
+    RouterModule,
+    TranslateModule
+   ],
   templateUrl: './recover.component.html',
   styleUrl: './recover.component.scss'
 })
