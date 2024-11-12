@@ -2,15 +2,15 @@
     <form [formGroup]="detailForm">
     
         <div style="padding-top: 10px;">
-            <mat-label>Name</mat-label><br>
+            <mat-label>{{'detail:PARTIES:Name'|translate}}</mat-label><br>
             <label>
                 <input matInput formControlName="nome" type="text" placeholder="John Doe" style="width: 100%;line-height: 25px;">
             </label>                        
         </div>
             
         <div style="padding-top: 20px;">            
-            <button mat-raised-button (click)="close()" style="color:darkred">Close</button>            
-            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">Store</button>
+            <button mat-raised-button (click)="close()" style="color:darkred">{{'detail:CLOSE'|translate}}</button>            
+            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">{{'detail:STORE'|translate}}</button>
         </div>                    
     
     </form>    
