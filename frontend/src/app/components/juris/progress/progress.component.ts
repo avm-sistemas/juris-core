@@ -8,7 +8,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { ProgressDetailComponent } from './progress-detail/progress-detail.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CrudMode } from '../../../enums/crud-mode.enum';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-progress',
@@ -31,7 +31,8 @@ export class ProgressComponent {
   public data$ = this.data.asObservable()
 
   constructor(private readonly service: ProgressService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
     this.load();
   }
 

@@ -8,7 +8,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { PartiesInvolvedDetailComponent } from './parties-involved-detail/parties-involved-detail.component';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-parties-involved',
@@ -31,7 +31,8 @@ export class PartiesInvolvedComponent {
   public data$ = this.data.asObservable()
 
   constructor(private readonly service: PartiesInvolvedService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
     this.load();
   }
 

@@ -8,7 +8,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ProcessDetailComponent } from './process-detail/process-detail.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-processes',
@@ -31,7 +31,8 @@ export class ProcessesComponent {
   public data$ = this.data.asObservable()
 
   constructor(private readonly service: ProcessService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
     this.load();
   }
 

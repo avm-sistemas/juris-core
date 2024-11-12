@@ -2,28 +2,28 @@
     <form [formGroup]="detailForm">
     
         <div style="padding-top: 10px;">
-            <mat-label>Code</mat-label><br>
+            <mat-label>{{'detail:PROCESS:Code'|translate}}</mat-label><br>
             <label>
                 <input matInput formControlName="numero" type="text" placeholder="" style="width: 100%;line-height: 25px;">
             </label>                        
         </div>
         
         <div style="padding-top: 10px;">
-            <mat-label>Description</mat-label><br>
+            <mat-label>{{'detail:PROCESS:Description'|translate}}</mat-label><br>
             <label>
                 <input matInput formControlName="descricao" type="text" placeholder="" style="width: 100%;line-height: 25px;">
             </label>                                                                
         </div>
 
         <div style="padding-top: 10px;">
-            <mat-label>Tipo</mat-label><br>
+            <mat-label>{{'detail:PROCESS:Tipo'|translate}}</mat-label><br>
             <label>
                 <input matInput formControlName="tipo" type="text" placeholder="" style="width: 100%;line-height: 25px;">
             </label>                                                    
         </div>                        
         
         <div style="padding-top: 10px;">
-            <mat-label>Status</mat-label><br>
+            <mat-label>{{'detail:PROCESS:Status'|translate}}</mat-label><br>
             <label>
                 <input matInput formControlName="status" type="text" placeholder="" style="width: 100%;line-height: 25px;">
             </label>                                                    
@@ -37,8 +37,8 @@
                         <table style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="text-align: left;">Name</th>
-                                    <th style="text-align: left;">E-Mail</th>
+                                    <th style="text-align: left;">{{'detail:PROCESS:LAWYER:Name'|translate}}</th>
+                                    <th style="text-align: left;">{{'detail:PROCESS:LAWYER:E-Mail'|translate}}</th>
                                 </tr>    
                             </thead>
                             <tbody>
@@ -57,9 +57,9 @@
                         <table style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="text-align: left;">Name</th>
-                                    <th style="text-align: left;">E-Mail</th>
-                                    <th style="text-align: left;">Telephone</th>
+                                    <th style="text-align: left;">{{'detail:PROCESS:Customer:Name'|translate}}</th>
+                                    <th style="text-align: left;">{{'detail:PROCESS:Customer:E-Mail'|translate}}</th>
+                                    <th style="text-align: left;">{{'detail:PROCESS:Customer:Telephone'|translate}}</th>
                                 </tr>                                
                             </thead>
                             <tbody>                                
@@ -80,7 +80,7 @@
                         <table style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="text-align: left;">Name</th>
+                                    <th style="text-align: left;">{{'detail:PROCESS:Parties:Name'|translate}}</th>
                                 </tr>                                
                             </thead>
                             <tbody>                                
@@ -97,9 +97,9 @@
                     <div style="padding-top: 10px;">                        
                         <table style="width: 100%;">
                             <tr>
-                                <th style="text-align: left;">Date</th>
-                                <th style="text-align: left;">Description</th>
-                                <th>Status</th>
+                                <th style="text-align: left;">{{'detail:PROCESS:Progress:Date'|translate}}</th>
+                                <th style="text-align: left;">{{'detail:PROCESS:Progress:Description'|translate}}</th>
+                                <th>{{'detail:PROCESS:Progress:Status'|translate}}</th>
                             </tr>
                             <tr *ngFor="let p of andamentos$ | async" style="border-bottom:1px solid gray">
                                 <td>{{ p.dataAndamento | date: 'dd/MM/YYYY' }}</td>
@@ -116,7 +116,7 @@
                         <table style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="text-align: left;">Name</th>
+                                    <th style="text-align: left;">{{'detail:PROCESS:Attachments:Name'|translate}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,8 +131,8 @@
         </mat-tab-group>
 
         <div style="padding-top: 20px;">
-            <button mat-raised-button (click)="close()" style="color:darkred">Close</button>            
-            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">Store</button>
+            <button mat-raised-button (click)="close()" style="color:darkred">{{'detail:CLOSE'|translate}}</button>            
+            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">{{'detail:STORE'|translate}}</button>
         </div>                    
     
     </form>    

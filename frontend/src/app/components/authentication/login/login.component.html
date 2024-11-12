@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
-    <span class="center">LOGIN</span>
+    <span class="center">{{'login:TITLE'|translate}}</span>
 </mat-toolbar>
 
 <div class="container">
@@ -8,32 +8,32 @@
         <mat-card appearance="outlined" title="Status">
             <!--<img mat-card-image src="../">-->
             <mat-card-header>
-                <mat-card-title>Login</mat-card-title>
+                <mat-card-title>{{'login:SUBTITLE'|translate}}</mat-card-title>
                 <mat-card-subtitle></mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <form [formGroup]="loginForm">
 
                     <div style="padding-top: 10px;">
-                        <mat-label>Username</mat-label><br>
+                        <mat-label>{{'login:USERNAME'|translate}}</mat-label><br>
                         <label>
                             <input matInput formControlName="username" type="text" placeholder="John Doe" style="width: 100%;line-height: 25px;">
                         </label>                        
                     </div>
 
                     <div style="padding-top: 10px;">
-                        <mat-label>Password</mat-label><br>
+                        <mat-label>{{'login:PASSWORD'|translate}}</mat-label><br>
                         <label>
                             <input matInput formControlName="password" type="password" placeholder="Your weird password" style="width: 100%;line-height: 25px;">
                         </label>                        
                     </div>
 
                     <div style="padding-top: 20px;">
-                        <button mat-raised-button (click)="login()" type="submit" value="Login">Login</button>                        
+                        <button mat-raised-button (click)="login()" type="submit" value="Login">{{'login:BUTTON'|translate}}</button>                        
                     </div>          
 
                     <div style="padding-top: 30px;">
-                        <button mat-raised-button routerLink="/user" type="button">Back</button>                        
+                        <button mat-raised-button routerLink="/user" type="button">{{'login:BACK'|translate}}</button>
                     </div>
                 </form>
             </mat-card-content>

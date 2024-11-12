@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { ProgressDto } from '../../../../dtos/progress.dto';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-progress-detail',
@@ -32,7 +32,8 @@ export class ProgressDetailComponent {
   detailForm: FormGroup = this.createForm();
 
   constructor(private readonly service: ProgressService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
   }
 
   ngOnInit(): void {

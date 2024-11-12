@@ -8,7 +8,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { AttachmentDetailComponent } from './attachment-detail/attachment-detail.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-attachments',
@@ -31,7 +31,8 @@ export class AttachmentsComponent {
   public data$ = this.data.asObservable()
 
   constructor(private readonly service: AttachmentService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
     this.load();
   }
 

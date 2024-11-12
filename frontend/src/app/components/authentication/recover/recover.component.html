@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
-    <span class="center">RECOVER ACCOUNT</span>
+    <span class="center">{{'recover:TITLE'|translate}}</span>
 </mat-toolbar>
 
 <div class="container">
@@ -8,25 +8,25 @@
         <mat-card appearance="outlined" title="Status">
             <!--<img mat-card-image src="../">-->
             <mat-card-header>
-                <mat-card-title>Recover Account</mat-card-title>
+                <mat-card-title>{{'recover:SUBTITLE'|translate}}</mat-card-title>
                 <mat-card-subtitle></mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <form [formGroup]="recoverForm">
 
                     <div style="padding-top: 10px;">
-                        <mat-label>E-Mail</mat-label><br>
+                        <mat-label>{{'recover:EMAIL'|translate}}</mat-label><br>
                         <label>
-                            <input matInput formControlName="email" type="email" placeholder="Your registered email account" style="width: 100%;line-height: 25px;">
+                            <input matInput formControlName="email" type="email" [placeholder]="'recover:EMAIL:placeholder' | translate" style="width: 100%;line-height: 25px;">
                         </label>                        
                     </div>
 
                     <div style="padding-top: 20px;">
-                        <button mat-raised-button (click)="recover()" type="submit" value="Recover">Recover</button>                        
+                        <button mat-raised-button (click)="recover()" type="submit" value="Recover">{{'recover:BUTTON'|translate}}</button>                        
                     </div>
 
                     <div style="padding-top: 30px;">
-                        <button mat-raised-button routerLink="/user" type="button">Back</button>
+                        <button mat-raised-button routerLink="/user" type="button">{{'recover:BACK'|translate}}</button>
                     </div>
                 </form>
             </mat-card-content>

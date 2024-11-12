@@ -8,7 +8,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-customers',
@@ -31,7 +31,8 @@ export class CustomersComponent {
   public data$ = this.data.asObservable()
 
   constructor(private readonly service: CustomerService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
     this.load();
   }
 

@@ -1,10 +1,10 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
-    <span class="center">PROGRESS</span>
+    <span class="center">{{'grid:PROGRESS:TITLE'|translate}}</span>
 </mat-toolbar>
 <div class="container">
     <div>
         <mat-toolbar class="toolbar-color-sub py-5 mb-4">
-            <button matButton (click)="openDialog(null, CRUDMODE.CREATE)">New</button>
+            <button matButton (click)="openDialog(null, CRUDMODE.CREATE)">{{'grid:NEW'|translate}}</button>
         </mat-toolbar>
     </div>
     <div style="padding: 0px;text-align: center;">
@@ -14,10 +14,10 @@
             <table style="width: 100%;" *ngIf="hasData.length > 0">
                 <thead>
                     <tr class="toolbar-color-sub">
-                        <th style="width: 150px;">Date</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th style="width: 150px;">Updated</th>
+                        <th style="width: 150px;">{{'grid:PROGRESS:Column:Date'|translate}}</th>
+                        <th>{{'grid:PROGRESS:Column:Description'|translate}}</th>
+                        <th>{{'grid:PROGRESS:Column:Status'|translate}}</th>
+                        <th style="width: 150px;">{{'grid:PROGRESS:Column:Updated'|translate}}</th>
                         <th style="width: 160px;"></th>
                     </tr>
                 </thead>
@@ -27,9 +27,9 @@
                         <td>{{ obj.descricao }}</td>                    
                         <td>{{ obj.statusAtual }}</td>    
                         <td>{{ obj.updated | date: 'dd/MM/yyyy' }}</td>
-                        <td><button matButton (click)="openDialog(obj.id, CRUDMODE.READ)">View</button>&nbsp;
-                            <button matButton (click)="openDialog(obj.id, CRUDMODE.UPDATE)">Edit</button>&nbsp;
-                            <button matButton (click)="openDialog(obj.id, CRUDMODE.DELETE)">Delete</button></td>
+                        <td><button matButton (click)="openDialog(obj.id, CRUDMODE.READ)">{{'grid:VIEW'|translate}}</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.UPDATE)">{{'grid:EDIT'|translate}}</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.DELETE)">{{'grid:DELETE'|translate}}</button></td>
                     </tr>    
                 </tbody>
             </table>
@@ -37,17 +37,18 @@
             <table style="width: 100%;" *ngIf="hasData.length == 0">
                 <thead>
                     <tr class="toolbar-color-sub">
-                        <th style="width: 150px;">Date</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th style="width: 150px;">Updated</th>
+                        <th style="width: 150px;">{{'grid:PROGRESS:Column:Date'|translate}}</th>
+                        <th>{{'grid:PROGRESS:Column:Description'|translate}}</th>
+                        <th>{{'grid:PROGRESS:Column:Status'|translate}}</th>
+                        <th style="width: 150px;">{{'grid:PROGRESS:Column:Updated'|translate}}</th>
+                        <th style="width: 160px;"></th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
 
             <div *ngIf="hasData.length == 0" style="text-align: center;margin-top: 50px;">
-                <p style="color:black">No DATA to display</p>                
+                <p style="color:black">{{'grid:NO-DATA'|translate}}</p>                
             </div>
 
         </div>

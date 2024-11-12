@@ -7,11 +7,18 @@ import { LawyerService } from '../../../../services/lawyer.service';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { LawyerDto } from '../../../../dtos/lawyer.dto';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lawyer-detail',
   standalone: true,
-  imports: [ CommonModule, AngularMaterialModule, ReactiveFormsModule, FormsModule ],
+  imports: [ 
+    CommonModule, 
+    AngularMaterialModule, 
+    ReactiveFormsModule, 
+    FormsModule,
+    TranslateModule
+  ],
   templateUrl: './lawyer-detail.component.html',
   styleUrl: './lawyer-detail.component.scss'
 })
@@ -25,7 +32,8 @@ export class LawyerDetailComponent implements OnInit {
   lawyerDetailForm: FormGroup = this.createForm();
 
   constructor(private readonly service: LawyerService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
   }
 
   ngOnInit(): void {

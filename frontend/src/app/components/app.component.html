@@ -16,7 +16,7 @@
     <span fxFlex></span>
 
     <div fxLayout="row" fxShow="false" fxShow.gt-xs>
-      <button *ngFor="let m of topMenu" mat-button [routerLink]="m.url" routerLinkActive="router-link-active no-border" style="color: white !important"><mat-icon *ngIf="m.icon === 'account_circle'">account_circle</mat-icon>{{ m.title }}</button>
+      <button *ngFor="let m of topMenu" mat-button [routerLink]="m.url" routerLinkActive="router-link-active no-border" style="color: white !important"><mat-icon *ngIf="m.icon === 'account_circle'">account_circle</mat-icon>{{ m.title | translate }}</button>
     </div>
     <div fxLayout="row" fxShow="false" fxShow.gt-xs>
       <app-translator></app-translator>
@@ -28,7 +28,7 @@
     <mat-drawer #drawer style="margin-top: 10px">
       <div fxLayout="column" style="margin-top: 10px; top: 10px">
         <button *ngFor="let m of menu" mat-button [routerLink]="m.url" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
-          <mat-icon class="mr-2">{{ m.icon }}</mat-icon>{{ m.title }}</button>
+          <mat-icon class="mr-2">{{ m.icon }}</mat-icon>{{ m.title | translate }}</button>
         <mat-divider></mat-divider>
       </div>
     </mat-drawer>

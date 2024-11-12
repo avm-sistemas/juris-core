@@ -1,10 +1,10 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
-    <span class="center">PARTIES INVOLVED</span>
+    <span class="center">{{'grid:PARTIES:TITLE'|translate}}</span>
 </mat-toolbar>
 <div class="container">
     <div>
         <mat-toolbar class="toolbar-color-sub py-5 mb-4">
-            <button matButton (click)="openDialog(null, CRUDMODE.CREATE)">New</button>
+            <button matButton (click)="openDialog(null, CRUDMODE.CREATE)">{{'grid:NEW'|translate}}</button>
         </mat-toolbar>
     </div>
     <div style="padding: 0px;text-align: center;">
@@ -14,8 +14,8 @@
             <table style="width: 100%;" *ngIf="hasData.length > 0">
                 <thead>
                     <tr class="toolbar-color-sub">
-                        <th>Name</th>
-                        <th style="width: 150px;">Updated</th>
+                        <th>{{'grid:PARTIES:Column:Name'|translate}}</th>
+                        <th style="width: 150px;">{{'grid:PARTIES:Column:Updated'|translate}}</th>
                         <th style="width: 150px;"></th>
                     </tr>
                 </thead>
@@ -23,9 +23,9 @@
                     <tr *ngFor="let obj of hasData">
                         <td>{{ obj.nome }}</td>
                         <td>{{ obj.updated | date: 'dd/MM/yyyy' }}</td>
-                        <td><button matButton (click)="openDialog(obj.id, CRUDMODE.READ)">View</button>&nbsp;
-                            <button matButton (click)="openDialog(obj.id, CRUDMODE.UPDATE)">Edit</button>&nbsp;
-                            <button matButton (click)="openDialog(obj.id, CRUDMODE.DELETE)">Delete</button></td>
+                        <td><button matButton (click)="openDialog(obj.id, CRUDMODE.READ)">{{'grid:VIEW'|translate}}</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.UPDATE)">{{'grid:EDIT'|translate}}</button>&nbsp;
+                            <button matButton (click)="openDialog(obj.id, CRUDMODE.DELETE)">{{'grid:DELETE'|translate}}</button></td>
                     </tr>    
                 </tbody>
             </table>
@@ -33,8 +33,8 @@
             <table style="width: 100%;" *ngIf="hasData.length == 0">
                 <thead>
                     <tr class="toolbar-color-sub">
-                        <th>Name</th>
-                        <th style="width: 150px;">Updated</th>
+                        <th>{{'grid:PARTIES:Column:Name'|translate}}</th>
+                        <th style="width: 150px;">{{'grid:PARTIES:Column:Updated'|translate}}</th>
                         <th style="width: 150px;"></th>
                     </tr>
                 </thead>
@@ -43,7 +43,7 @@
             </table>
 
             <div *ngIf="hasData.length == 0" style="text-align: center;margin-top: 50px;">
-                <p style="color:black">No DATA to display</p>                
+                <p style="color:black">{{'grid:NO-DATA'|translate}}</p>                
             </div>
 
     </div>

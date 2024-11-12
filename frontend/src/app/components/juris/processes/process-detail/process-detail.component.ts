@@ -13,7 +13,7 @@ import { AttachmentDto } from '../../../../dtos/attachment.dto';
 import { PartiesInvolvedDto } from '../../../../dtos/parties-involved.dto';
 import { BehaviorSubject } from 'rxjs';
 import { CustomerDto } from '../../../../dtos/customer.dto';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-process-detail',
@@ -53,7 +53,8 @@ export class ProcessDetailComponent {
   public customers$ = this.customers.asObservable();
 
   constructor(private readonly service: ProcessService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
   }
 
   ngOnInit(): void {
