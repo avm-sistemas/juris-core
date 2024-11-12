@@ -62,7 +62,7 @@
     "grid:NO-DATA": "No DATA to display",
 
     "detail:CLOSE": "Fechar",
-    "detail:STORA" : "Gravar",
+    "detail:STORE" : "Gravar",
 
     "grid:LAYER:TITLE": "ADVOGADOS",    
     "grid:LAYER:Column:Name": "Nome",

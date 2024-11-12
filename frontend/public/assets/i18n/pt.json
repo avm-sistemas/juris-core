@@ -63,7 +63,7 @@
     "grid:NO-DATA": "Nada a exibir",
 
     "detail:CLOSE": "Fechar",
-    "detail:STORA" : "Gravar",
+    "detail:STORE" : "Gravar",
 
     "grid:LAWYER:TITLE": "ADVOGADOS",    
     "grid:LAWYER:Column:Name": "Nome",
@@ -75,6 +75,20 @@
     "detail:LAWYER:Name": "Nome",
     "detail:LAWYER:OAB": "OAB",
     "detail:LAWYER:Telephone": "Telefone",
-    "detail:LAWYER:E-Mail": "E-Mail"
+    "detail:LAWYER:E-Mail": "E-Mail",
+
+    "grid:CUSTOMER:TITLE": "CLIENTES",    
+    "grid:CUSTOMER:Column:Name": "Nome",
+    "grid:CUSTOMER:Column:DOC": "Documento",
+    "grid:CUSTOMER:Column:Telephone": "Telefone",
+    "grid:CUSTOMER:Column:E-Mail": "E-Mail",
+    "grid:CUSTOMER:Column:Updated": "Actualizado",
+
+    "detail:CUSTOMER:Name": "Nome",
+    "detail:CUSTOMER:DOC": "Documento",
+    "detail:CUSTOMER:Address": "Morada",
+    "detail:CUSTOMER:Telephone": "Telefone",
+    "detail:CUSTOMER:E-Mail": "E-Mail"
+
 
 }

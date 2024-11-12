@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { CustomerService } from '../../../../services/customer.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-customer-detail',
@@ -32,7 +32,8 @@ export class CustomerDetailComponent {
   detailForm: FormGroup = this.createForm();
 
   constructor(private readonly service: CustomerService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
   }
 
   ngOnInit(): void {
