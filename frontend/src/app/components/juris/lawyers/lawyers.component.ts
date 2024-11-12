@@ -8,11 +8,18 @@ import { CommonModule, NgFor } from '@angular/common';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { LawyerDetailComponent } from './lawyer-detail/lawyer-detail.component';
 import { CrudMode } from '../../../enums/crud-mode.enum';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lawyers',
   standalone: true,
-  imports: [ CommonModule, NgFor, MatToolbarModule, MatDialogModule ],
+  imports: [ 
+    CommonModule, 
+    NgFor, 
+    MatToolbarModule, 
+    MatDialogModule,
+    TranslateModule
+  ],
   templateUrl: './lawyers.component.html',
   styleUrl: './lawyers.component.scss'
 })

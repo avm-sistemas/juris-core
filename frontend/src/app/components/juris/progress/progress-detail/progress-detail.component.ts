@@ -7,11 +7,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { ProgressDto } from '../../../../dtos/progress.dto';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-progress-detail',
   standalone: true,
-  imports: [ CommonModule, AngularMaterialModule, ReactiveFormsModule, FormsModule ],
+  imports: [ 
+    CommonModule, 
+    AngularMaterialModule, 
+    ReactiveFormsModule, 
+    FormsModule,
+    TranslateModule
+  ],
   templateUrl: './progress-detail.component.html',
   styleUrl: './progress-detail.component.scss'
 })

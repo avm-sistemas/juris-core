@@ -1,0 +1,9 @@
+
+<div style="font-size: small;padding-top: 8px;overflow: hidden;">
+    <mat-select [(ngModel)]="selected" name="language" style="line-height: 20px;color:yellowgreen" (valueChange)="onChange($event)">
+        @for (item of languages; track item) {
+            <mat-option style="overflow: hidden;" [value]="item"><span style="color:yellowgreen">{{ item }}</span></mat-option>
+        }
+    </mat-select>    
+</div>    
+

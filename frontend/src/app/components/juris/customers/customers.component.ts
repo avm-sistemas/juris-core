@@ -8,11 +8,18 @@ import { CommonModule, NgFor } from '@angular/common';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-customers',
   standalone: true,
-  imports: [ CommonModule, NgFor, MatToolbarModule, MatDialogModule ],
+  imports: [ 
+    CommonModule, 
+    NgFor, 
+    MatToolbarModule, 
+    MatDialogModule,
+    TranslateModule
+  ],
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.scss'
 })

@@ -1,0 +1,26 @@
+{
+    "home:TITLE": "Control of Legal Processes",
+    "home:HEADLINE": "Always have progress, client records, attachments and all information at hand",
+    "home:CALL-BUTTON": "GO INSIDE!",
+    
+    "grid:VIEW": "View",
+    "grid:EDIT": "Edit",
+    "grid:DELETE": "Delete",
+    "grid:NEW": "New",
+
+    "detail:CLOSE": "Close",
+    "detail:STORA" : "Store",
+
+    "grid:LAYER:TITLE": "LAWYERS",
+    "grid:LAYER:Column:Name": "Name",
+    "grid:LAYER:Column:OAB": "OAB",
+    "grid:LAYER:Column:Telephone": "Telephone",
+    "grid:LAYER:Column:E-Mail": "E-Mail",
+    "grid:LAYER:Column:Updated": "Updated",
+
+    "detail:LAYER:Name": "Name",
+    "detail:LAYER:OAB": "OAB",
+    "detail:LAYER:Telephone": "Telephone",
+    "detail:LAYER:E-Mail": "E-Mail"
+
+}

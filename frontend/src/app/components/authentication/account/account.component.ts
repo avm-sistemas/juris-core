@@ -11,6 +11,7 @@ import { AuthService } from '../../../services/auth.service';
 import { StoreService } from '../../../services/store.service';
 import * as jwt_decode from 'jwt-decode';
 import { AngularMaterialModule } from '../../../modules/angular-material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account',
@@ -25,7 +26,8 @@ import { AngularMaterialModule } from '../../../modules/angular-material.module'
     MatIconModule, 
     MatButtonModule, 
     MatGridListModule,
-    RouterLink
+    RouterLink,
+    TranslateModule
 ],
 templateUrl: './account.component.html',
   styleUrl: './account.component.scss'

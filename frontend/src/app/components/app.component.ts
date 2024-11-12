@@ -8,11 +8,22 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
 import {LayoutModule} from '@angular/cdk/layout';
 import { StoreService } from '../services/store.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslatorComponent } from './core/translator/translator.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterOutlet, CommonModule, AngularMaterialModule, FlexLayoutModule, RouterLink, LayoutModule ],
+  imports: [ 
+    RouterOutlet, 
+    CommonModule, 
+    AngularMaterialModule, 
+    FlexLayoutModule, 
+    RouterLink, 
+    LayoutModule,
+    TranslateModule,
+    TranslatorComponent
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
@@ -26,8 +37,11 @@ export class AppComponent implements OnInit {
   topMenu: any[] = [];
 
   constructor(private readonly auth: AuthService,
-              private readonly store: StoreService) {
-
+              private readonly store: StoreService,
+              private readonly translate: TranslateService) {
+    this.translate.addLangs(['pt', 'en']);
+    this.translate.setDefaultLang('pt');
+    this.translate.use('pt');
   }
 
   ngOnInit(): void {

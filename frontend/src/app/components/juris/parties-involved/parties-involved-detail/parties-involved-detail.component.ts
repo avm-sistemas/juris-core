@@ -7,11 +7,18 @@ import { PartiesInvolvedDto } from '../../../../dtos/parties-involved.dto';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-parties-involved-detail',
   standalone: true,
-  imports: [ CommonModule, AngularMaterialModule, ReactiveFormsModule, FormsModule ],
+  imports: [ 
+    CommonModule, 
+    AngularMaterialModule, 
+    ReactiveFormsModule, 
+    FormsModule,
+    TranslateModule
+  ],
   templateUrl: './parties-involved-detail.component.html',
   styleUrl: './parties-involved-detail.component.scss'
 })

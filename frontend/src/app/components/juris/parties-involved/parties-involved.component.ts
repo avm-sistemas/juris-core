@@ -8,11 +8,18 @@ import { CommonModule, NgFor } from '@angular/common';
 import { PartiesInvolvedDetailComponent } from './parties-involved-detail/parties-involved-detail.component';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-parties-involved',
   standalone: true,
-  imports: [ CommonModule, NgFor, MatToolbarModule, MatDialogModule ],
+  imports: [ 
+    CommonModule, 
+    NgFor, 
+    MatToolbarModule, 
+    MatDialogModule,
+    TranslateModule
+  ],
   templateUrl: './parties-involved.component.html',
   styleUrl: './parties-involved.component.scss'
 })
