@@ -29,7 +29,7 @@ export class RegisterComponent {
   constructor(private readonly auth: AuthService, 
               private readonly router: Router,
               private readonly toast: HotToastService) {
-    if (this.auth.isAuthenticated()) {
+    if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/home']);
     }
   }

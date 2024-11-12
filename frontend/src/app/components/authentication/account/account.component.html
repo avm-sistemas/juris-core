@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
-    <span class="center">ACCOUNT</span>
+    <span class="center">{{ 'account:TITLE' | translate }}</span>
 </mat-toolbar>
 
 <div class="container">
@@ -10,16 +10,16 @@
             <!--<img mat-card-image src="../">-->
             <mat-card-header>
                 <mat-card-title>{{ this.user?.name }}</mat-card-title>
-                <mat-card-subtitle>{{ this.user?.username }} connected</mat-card-subtitle>
+                <mat-card-subtitle>{{ this.user?.username }} {{ 'account:CONNECTED' | translate }}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <div style="padding-top: 10px;">
-                    <p>Name: {{ this.user?.name }}</p>
-                    <p>Email: {{ this.user?.email }} </p>
+                    <p>
+                        {{ "account:NAME" | translate }}: {{ this.user?.name }}<br>
+                        {{ "account:EMAIL" | translate }}: {{ this.user?.email }}
+                    </p>
                 </div>
             </mat-card-content>
-            <mat-card-actions>
-            </mat-card-actions>
         </mat-card>        
     </div>
 </div>
@@ -27,26 +27,26 @@
 <div *ngIf="logged">
 
     <div style="padding: 30px;">
+        <!-- TODO: MELHORAR ESTA IMPLEMENTAÇÃO COM UM TIPO DE MENU SERVICE -->
 
-        
         <div style="background-color: gray;color:white;cursor: pointer;" routerLink="/customers">
             <button mat-icon-button routerLink="/customers" routerLinkActive="router-link-active" style="margin-top:8px" title="Customers">
                 <mat-icon style="color:white">people</mat-icon>
-                <span style="color:white">Customers</span>
+                <span style="color:white">{{'Customers'|translate}}</span>
             </button>
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: gray;cursor: pointer;" routerLink="/lawyers">
             <button mat-icon-button routerLink="/files" routerLinkActive="router-link-active" routerLink="/register" routerLinkActive="router-link-active" style="margin-top:8px;" title="Register">
                 <mat-icon style="color:white;">people</mat-icon>
-                <span style="color:white">Lawyers</span>
+                <span style="color:white">{{'Lawyers'|translate}}</span>
             </button>
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: gray;cursor: pointer;" routerLink="/parties-involved">
             <button mat-icon-button routerLink="/parties-involved" routerLinkActive="router-link-active" routerLink="/parties-involved" routerLinkActive="router-link-active" style="margin-top:8px;" title="Parties Involved">
                 <mat-icon style="color:white;">people</mat-icon>
-                <span style="color:white">Parties Involved</span>
+                <span style="color:white">{{'Parties Involved'|translate}}</span>
             </button>
         </div>
 
@@ -54,35 +54,35 @@
         <div style="background-color: gray;color:white;padding-top: 10px;cursor: pointer;" routerLink="/processes">
             <button mat-icon-button routerLink="/processes" routerLinkActive="router-link-active" style="margin-top:8px" title="Processes">
                 <mat-icon style="color:white">account_tree</mat-icon>
-                <span style="color:white">Processes</span>
+                <span style="color:white">{{'Processes'|translate}}</span>
             </button>
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: gray;color:white;cursor: pointer;" routerLink="/progress">
             <button mat-icon-button routerLink="/progress" routerLinkActive="router-link-active" style="margin-top:8px" title="Progress">
                 <mat-icon style="color:white">rule_settings</mat-icon>
-                <span style="color:white">Progress</span>
+                <span style="color:white">{{'Progress'|translate}}</span>
             </button>            
         </div>        
         <div style="height: 10px;"></div>
         <div style="background-color: gray;cursor: pointer;" routerLink="/attachments">
             <button mat-icon-button routerLink="/parties-involved" routerLinkActive="router-link-active" routerLink="/attachments" routerLinkActive="router-link-active" style="margin-top:8px;" title="Attachments">
                 <mat-icon style="color:white;">inventory_2</mat-icon>
-                <span style="color:white">Attachments</span>
+                <span style="color:white">{{'Attachments'|translate}}</span>
             </button>
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: gray;cursor: pointer;" routerLink="/custom-service">
             <button mat-icon-button routerLink="/custom-service" routerLinkActive="router-link-active" routerLink="/custom-service" routerLinkActive="router-link-active" style="margin-top:8px;" title="Custom Service">
                 <mat-icon style="color:white;">today</mat-icon>
-                <span style="color:white">Custom Service</span>
+                <span style="color:white">{{'Customer Service'|translate}}</span>
             </button>
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: gray;cursor: pointer;" routerLink="/schedule">
             <button mat-icon-button routerLink="/schedule" routerLinkActive="router-link-active" routerLink="/schedule" routerLinkActive="router-link-active" style="margin-top:8px;" title="Schedule">
                 <mat-icon style="color:white;">calendar_month</mat-icon>
-                <span style="color:white">Schedule</span>
+                <span style="color:white">{{'Schedule'|translate}}</span>
             </button>
         </div>        
     </div>
@@ -92,21 +92,21 @@
         <div style="background-color: yellowgreen;cursor: pointer;" routerLink="/files">
             <button mat-icon-button routerLink="/files" routerLinkActive="router-link-active" routerLink="/register" routerLinkActive="router-link-active" style="margin-top:8px;" title="Register">                        
                 <mat-icon>inventory_2</mat-icon>                                                
-                <span style="color:black">Files</span>
+                <span style="color:black">{{'Files'|translate}}</span>
             </button>    
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: yellow;padding-top: 10px;cursor: pointer;" routerLink="/notifications">
             <button mat-icon-button routerLink="/notifications" routerLinkActive="router-link-active" style="margin-top:8px" title="Notifications">
                 <mat-icon>bolt</mat-icon>
-                <span style="color:black">Notifications</span>
+                <span style="color:black">{{'Notifications'|translate}}</span>
             </button>    
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: lightsalmon;cursor: pointer;" (click)="logout()">
             <button mat-icon-button (click)="logout()" routerLinkActive="router-link-active" style="margin-top:8px" title="Logout">
                 <mat-icon>logout</mat-icon>
-                <span style="color:black">Logout</span>
+                <span style="color:black">{{ 'Logout' | translate }}</span>
             </button>            
         </div>
         
@@ -120,21 +120,21 @@
         <div style="background-color: yellowgreen;cursor: pointer;" routerLink="/register">
             <button mat-icon-button routerLink="/register" routerLinkActive="router-link-active" routerLink="/register" routerLinkActive="router-link-active" style="margin-top:8px;" title="Register">                        
                 <mat-icon>app_registration</mat-icon>                                                
-                <span style="color:black">Register</span>
+                <span style="color:black">{{ 'Register' | translate }}</span>
             </button>    
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: yellow;padding-top: 10px;cursor: pointer;" routerLink="/login">
             <button mat-icon-button routerLink="/login" routerLinkActive="router-link-active" style="margin-top:8px" title="Login">
                 <mat-icon>login</mat-icon>
-                <span style="color:black">Login</span>
+                <span style="color:black">{{'Login'|translate}}</span>
             </button>    
         </div>
         <div style="height: 10px;"></div>
         <div style="background-color: lightsalmon;cursor: pointer;" routerLink="/recover">
             <button mat-icon-button routerLink="/recover" routerLinkActive="router-link-active" style="margin-top:8px" title="Recover">
                 <mat-icon>settings</mat-icon>
-                <span style="color:black">Recover</span>
+                <span style="color:black">{{'Recover'|translate}}</span>
             </button>            
         </div>
         

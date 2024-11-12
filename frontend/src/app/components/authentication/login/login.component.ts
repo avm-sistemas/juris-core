@@ -7,7 +7,7 @@ import { AngularMaterialModule } from '../../../modules/angular-material.module'
 import { BehaviorSubject } from 'rxjs';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { StoreService } from '../../../services/store.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,8 @@ export class LoginComponent {
   constructor(private readonly auth: AuthService, 
               private readonly router: Router,
               private readonly store: StoreService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
     /*
     if (this.auth.isAuthenticated()) {
       this.router.navigate(['/home']);
@@ -50,13 +51,19 @@ export class LoginComponent {
     const pass = this.loginForm.controls['password'].value;
     this.auth.authenticate(user, pass).then(
       (data: any) => {
-        this.toast.success('User logged in');        
+        const translatedMessage = this.translate.instant('login:TOAST:SUCCESS');
+        this.toast.success(translatedMessage);        
         this.router.navigate(['/user']);
       },
       (error: any) => {
         debugger;
-        if (error.message) {     
-          this.toast.error(error.message);
+        if (error.message) {
+          const translatedMessage = this.translate.instant('login:TOAST:'+error.message);
+          if (translatedMessage) {
+
+          } else {
+            this.toast.error(error.message);
+          }            
         }
         console.log(error);
       }
