@@ -32,8 +32,7 @@ export class AuthService {
   }
 
   async register(obj: IUser) {
-    const registo = await this.client.collection('users').create(obj);
-    console.log('registo', registo);
+    const registo = await this.client.collection('users').create(obj);    
     return registo;
   }
 

@@ -62,7 +62,6 @@ export class PartiesInvolvedDetailComponent {
                   this.toast.error(error.message);
                 }    
               }
-                
             }
         )        
       }  
@@ -91,7 +90,6 @@ export class PartiesInvolvedDetailComponent {
     });
   }
 
-
   close() {
     this.dialogRef.close();
   }
@@ -104,7 +102,9 @@ export class PartiesInvolvedDetailComponent {
 
         this.service.create(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer registered');
+            const translatedMessage = this.translate.instant('detail:PARTIES:MSG:CREATE');
+            this.toast.success(translatedMessage);
+
             this.dialogRef.close();
           }
         ).catch(
@@ -128,7 +128,8 @@ export class PartiesInvolvedDetailComponent {
 
         this.service.update(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer updated');    
+            const translatedMessage = this.translate.instant('detail:PARTIES:MSG:UPDATE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(
@@ -150,7 +151,8 @@ export class PartiesInvolvedDetailComponent {
         dto.nome = this.detailForm.controls['nome'].value;
         this.service.delete(dto).then(
           (response: any) => {            
-            this.toast.success('Lawyer deleted');
+            const translatedMessage = this.translate.instant('detail:PARTIES:MSG:DELETE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(

@@ -41,8 +41,7 @@ export class AttachmentsComponent {
 
   async load() {
     this.service.getAll().then(
-      (data: any) => {
-        console.log("data => ",data);
+      (data: any) => {        
         if (data)
           this.data.next(data);        
       },
@@ -50,8 +49,7 @@ export class AttachmentsComponent {
         debugger;
         if (error.message) {     
           this.toast.error(error.message);
-        }
-        console.log("error => ", error);
+        }        
       }
     );    
   }

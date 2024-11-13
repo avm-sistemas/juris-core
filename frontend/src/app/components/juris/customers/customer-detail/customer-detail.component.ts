@@ -42,12 +42,11 @@ export class CustomerDetailComponent {
     if (this.data) {
       const id = this.data?.id;
       this.mode = this.data?.mode;      
-      console.log('id => ', id, ' mode => ', this.mode);
       if (this.data.id) {
         this.service.getById(id).then(
           (response: any) => {
             if (response) {
-              this.detailForm = this.updateForm(response.id, response.name, response.cpfCnpj, response.endereco, response.telefone, response.email);              
+              this.detailForm = this.updateForm(response.id, response.nome, response.cpfCnpj, response.endereco, response.telefone, response.email);              
               if (this.mode == CrudMode.READ) {
                 this.detailForm.disable();
               }
@@ -107,7 +106,8 @@ export class CustomerDetailComponent {
 
         this.service.create(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer registered');
+            const translatedMessage = this.translate.instant('detail:CUSTOMER:MSG:CREATE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(
@@ -135,7 +135,8 @@ export class CustomerDetailComponent {
 
         this.service.update(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer updated');    
+            const translatedMessage = this.translate.instant('detail:CUSTOMER:MSG:UPDATE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(
@@ -161,7 +162,9 @@ export class CustomerDetailComponent {
         dto.email = this.detailForm.controls['email'].value;
         this.service.delete(dto).then(
           (response: any) => {            
-            this.toast.success('Lawyer deleted');
+            const translatedMessage = this.translate.instant('detail:CUSTOMER:MSG:DELETE');
+            this.toast.success(translatedMessage);
+
             this.dialogRef.close();
           }
         ).catch(
