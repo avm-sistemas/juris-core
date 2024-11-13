@@ -9,6 +9,7 @@ import { CrudMode } from '../../../enums/crud-mode.enum';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { imagesConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-customers',
@@ -30,6 +31,8 @@ export class CustomersComponent {
   private data: BehaviorSubject<CustomerDto[]> = new BehaviorSubject<CustomerDto[]>([]);
   public data$ = this.data.asObservable()
 
+  images = imagesConfig;
+
   constructor(private readonly service: CustomerService,
               private readonly toast: HotToastService,
               private readonly translate: TranslateService) {
@@ -46,9 +49,13 @@ export class CustomersComponent {
       (error: any) => {
         debugger;
         if (error.message) {     
-          this.toast.error(error.message);
-        }
-        console.log("error => ", error);
+          const translatedErrorMessage = this.translate.instant(error.message);
+          if (translatedErrorMessage) {
+            this.toast.error(translatedErrorMessage);
+          } else {
+            this.toast.error(error.message);
+          }
+        }        
       }
     );    
   }

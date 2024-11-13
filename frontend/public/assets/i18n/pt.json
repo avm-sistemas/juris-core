@@ -7,7 +7,7 @@
     "Processes": "Processos",
     "Progress": "Andamentos",
     "Customer Service": "Atendimentos",
-    "Scheduler": "Agenda",
+    "Schedule": "Agenda",
     "Attachments": "Anexos",
 
     "Files": "Meus Ficheiros",
@@ -63,7 +63,8 @@
     "grid:NO-DATA": "Nada a exibir",
 
     "detail:CLOSE": "Fechar",
-    "detail:STORE" : "Gravar",
+    "detail:STORE": "Gravar",
+    "detail:BACK": "Voltar",
 
     "grid:LAWYER:TITLE": "ADVOGADOS",    
     "grid:LAWYER:Column:Name": "Nome",
@@ -117,6 +118,7 @@
     "detail:PROCESS:Description": "Descrição",
     "detail:PROCESS:Tipo": "Tipo",
 
+    "detail:PROCESS:TITLE": "PROCESSO",
     "detail:PROCESS:LAWYER:Name": "Nome",
     "detail:PROCESS:LAWYER:E-Mail": "E-Mail",
     "detail:PROCESS:Customer:Name": "Nome",
@@ -126,7 +128,12 @@
     "detail:PROCESS:Progress:Date": "Data",
     "detail:PROCESS:Progress:Description": "Descrição",
     "detail:PROCESS:Progress:Status": "Status",
-    "detail:PROCESS:Attachments:Name": "Nome"
+    "detail:PROCESS:Attachments:Name": "Nome",
 
+    "grid:CUSTOMER-SERVICE:TITLE": "Atendimentos",
+
+    "grid:ATTACHMENTS:TITLE": "Anexos",
+
+    "Something went wrong while processing your request.": "Falha na Comunicação"
 
 }

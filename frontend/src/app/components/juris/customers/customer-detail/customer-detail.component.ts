@@ -52,8 +52,14 @@ export class CustomerDetailComponent {
             }
           }).catch(
             (error: any) => {
-              if (error.message)
-                this.toast.error(error.message)
+              if (error.message) {
+                const translatedErrorMessage = this.translate.instant(error.message);
+                if (translatedErrorMessage) {
+                  this.toast.error(translatedErrorMessage);
+                } else {
+                  this.toast.error(error.message);
+                }    
+              }                
             }
         )        
       }  
@@ -105,7 +111,12 @@ export class CustomerDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -128,7 +139,12 @@ export class CustomerDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -149,7 +165,12 @@ export class CustomerDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );        

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { imagesConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-customer-service',
@@ -14,4 +15,9 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class CustomerServiceComponent {
 
+  images = imagesConfig;
+
+  constructor(private readonly translate: TranslateService) {
+    
+  }
 }

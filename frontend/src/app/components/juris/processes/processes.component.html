@@ -4,7 +4,10 @@
 <div class="container">
     <div>
         <mat-toolbar class="toolbar-color-sub py-5 mb-4">
-            <button matButton (click)="openDialog(null, CRUDMODE.CREATE)">{{'grid:NEW'|translate}}</button>
+            <button class="btn-sem-borda" mat-icon-button (click)="openDialog(null, CRUDMODE.CREATE)">
+                <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">
+                {{'grid:NEW'|translate}}            
+            </button>
         </mat-toolbar>
     </div>
     <div style="padding: 0px;text-align: center;">
@@ -27,9 +30,26 @@
                         <td>{{ obj.status }}</td>
                         <td>{{ obj.descricao }}</td>                    
                         <td>{{ obj.updated | date: 'dd/MM/yyyy' }}</td>
-                        <td><button matButton (click)="openDialog(obj.id, CRUDMODE.READ)">{{'grid:VIEW'|translate}}</button>&nbsp;
-                            <button matButton (click)="openDialog(obj.id, CRUDMODE.UPDATE)">{{'grid:EDIT'|translate}}</button>&nbsp;
-                            <button matButton (click)="openDialog(obj.id, CRUDMODE.DELETE)">{{'grid:DELETE'|translate}}</button></td>
+                        <td>
+                            <button class="btn-sem-borda" mat-icon-button 
+                                    (click)="navigateToDetail(obj.id, CRUDMODE.READ)"
+                                    routerLinkActive="router-link-active" 
+                                    style="margin-top:8px">
+                                <img class="svg-icon-button-view" [src]="images.url_svg_view" style="width: 30px;">                                
+                            </button>
+                            <button class="btn-sem-borda" mat-icon-button 
+                                    (click)="openDialog(obj.id, CRUDMODE.UPDATE)"
+                                    routerLinkActive="router-link-active" 
+                                    style="margin-top:8px">                                
+                                <img class="svg-icon-button-edit" [src]="images.url_svg_edit" style="width: 30px;">
+                            </button>
+                            <button class="btn-sem-borda" mat-icon-button 
+                                (click)="openDialog(obj.id, CRUDMODE.DELETE)" 
+                                routerLinkActive="router-link-active" 
+                                style="margin-top:8px">                                
+                                <img class="svg-icon-button-delete" [src]="images.url_svg_delete" style="width: 30px;">
+                            </button>  
+                        </td>
                     </tr>    
                 </tbody>
             </table>

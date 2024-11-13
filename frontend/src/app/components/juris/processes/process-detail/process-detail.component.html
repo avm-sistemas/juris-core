@@ -1,3 +1,7 @@
+<mat-toolbar class="toolbar-color py-5 mb-4">
+    <span class="center">{{'detail:PROCESS:TITLE'|translate}} {{numero}}</span>
+</mat-toolbar>
+
 <div style="padding: 30px;">
     <form [formGroup]="detailForm">
     
@@ -131,8 +135,22 @@
         </mat-tab-group>
 
         <div style="padding-top: 20px;">
-            <button mat-raised-button (click)="close()" style="color:darkred">{{'detail:CLOSE'|translate}}</button>            
-            <button mat-raised-button (click)="submit()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.READ">{{'detail:STORE'|translate}}</button>
+            <button mat-raised-button 
+                    *ngIf="loadType === ELOADTYPE.DIALOG"
+                    (click)="close()" 
+                    style="color:darkred">{{'detail:CLOSE'|translate}}</button>
+            <button mat-raised-button 
+                    *ngIf="mode != 2"
+                    (click)="submit()" 
+                    type="submit" 
+                    style="float: right;color:green" 
+                    >{{'detail:STORE'|translate}}</button>
+            <button mat-raised-button 
+                    *ngIf="mode == 2 && loadType != ELOADTYPE.DIALOG"
+                    (click)="navigateToLista()"
+                    type="submit" 
+                    style="float: right;color:green" 
+                    >{{'detail:BACK'|translate}}</button>
         </div>                    
     
     </form>    
