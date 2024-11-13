@@ -8,6 +8,7 @@ import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { AttachmentService } from '../../../../services/attachment.service';
 import { AttachmentDto } from '../../../../dtos/attachment.dto';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-attachment-detail',
@@ -17,7 +18,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    MatToolbarModule
   ],
   templateUrl: './attachment-detail.component.html',
   styleUrl: './attachment-detail.component.scss'

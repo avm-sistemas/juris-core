@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
       this.menu.push({ title: 'Processes', url: '/processes', icon: 'account_tree' });
       this.menu.push({ title: 'Progress',  url: '/progress', icon: 'rule_settings' });
       this.menu.push({ title: 'Customer Service', url: '/customer-service', icon: 'today'});
-      this.menu.push({ title: 'Scheduler', url: '/scheduler', icon: 'calendar_month' });  
+      this.menu.push({ title: 'Scheduler', url: '/schedule', icon: 'calendar_month' });  
     }
   }
 

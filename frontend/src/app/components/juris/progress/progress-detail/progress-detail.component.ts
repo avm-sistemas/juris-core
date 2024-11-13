@@ -8,6 +8,7 @@ import { HotToastService } from '@ngxpert/hot-toast';
 import { ProgressDto } from '../../../../dtos/progress.dto';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-progress-detail',
@@ -17,7 +18,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    MatToolbarModule
   ],
   templateUrl: './progress-detail.component.html',
   styleUrl: './progress-detail.component.scss'
