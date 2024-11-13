@@ -7,7 +7,7 @@
     "Processes": "Processos",
     "Progress": "Andamentos",
     "Customer Service": "Atendimentos",
-    "Scheduler": "Agenda",
+    "Schedule": "Agenda",
     "Attachments": "Anexos",
 
     "Files": "Meus Ficheiros",
@@ -63,7 +63,8 @@
     "grid:NO-DATA": "Nada a exibir",
 
     "detail:CLOSE": "Fechar",
-    "detail:STORE" : "Gravar",
+    "detail:STORE": "Gravar",
+    "detail:BACK": "Voltar",
 
     "grid:LAWYER:TITLE": "ADVOGADOS",    
     "grid:LAWYER:Column:Name": "Nome",
@@ -72,6 +73,7 @@
     "grid:LAWYER:Column:E-Mail": "E-Mail",
     "grid:LAWYER:Column:Updated": "Actualizado",
 
+    "detail:LAWYER:TITLE": "ADVOGADO",
     "detail:LAWYER:Name": "Nome",
     "detail:LAWYER:OAB": "OAB",
     "detail:LAWYER:Telephone": "Telefone",
@@ -84,6 +86,7 @@
     "grid:CUSTOMER:Column:E-Mail": "E-Mail",
     "grid:CUSTOMER:Column:Updated": "Actualizado",
 
+    "detail:CUSTOMER:TITLE": "CLIENTE",
     "detail:CUSTOMER:Name": "Nome",
     "detail:CUSTOMER:DOC": "Documento",
     "detail:CUSTOMER:Address": "Morada",
@@ -94,19 +97,21 @@
     "grid:PARTIES:Column:Name": "Nome",
     "grid:PARTIES:Column:Updated": "Actualizado",
 
+    "detail:PARTIES:TITLE": "PARTE ENVOLVIDA",
     "detail:PARTIES:Name": "Nome",
 
-    "grid:PROGRESS:TITLE": "Andamentos",    
+    "grid:PROGRESS:TITLE": "ANDAMENTOS",    
     "grid:PROGRESS:Column:Date": "Data",
     "grid:PROGRESS:Column:Description": "Descrição",
     "grid:PROGRESS:Column:Status": "Status",
     "grid:PROGRESS:Column:Updated": "Actualizado",
     
+    "detail:PROGRESS:TITLE": "ANDAMENTO",
     "detail:PROGRESS:Date": "Data",
     "detail:PROGRESS:Description": "Descrição",
     "detail:PROGRESS:Status": "Status",
 
-    "grid:PROCESS:TITLE": "Processos",    
+    "grid:PROCESS:TITLE": "PROCESSOS",    
     "grid:PROCESS:Column:Code": "Número",
     "grid:PROCESS:Column:Status": "Status",
     "grid:PROCESS:Column:Description": "Descrição",
@@ -117,6 +122,7 @@
     "detail:PROCESS:Description": "Descrição",
     "detail:PROCESS:Tipo": "Tipo",
 
+    "detail:PROCESS:TITLE": "PROCESSO",
     "detail:PROCESS:LAWYER:Name": "Nome",
     "detail:PROCESS:LAWYER:E-Mail": "E-Mail",
     "detail:PROCESS:Customer:Name": "Nome",
@@ -126,7 +132,12 @@
     "detail:PROCESS:Progress:Date": "Data",
     "detail:PROCESS:Progress:Description": "Descrição",
     "detail:PROCESS:Progress:Status": "Status",
-    "detail:PROCESS:Attachments:Name": "Nome"
+    "detail:PROCESS:Attachments:Name": "Nome",
 
+    "grid:CUSTOMER-SERVICE:TITLE": "Atendimentos",
+
+    "grid:ATTACHMENTS:TITLE": "Anexos",
+
+    "Something went wrong while processing your request.": "Falha na Comunicação"
 
 }

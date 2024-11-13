@@ -14,6 +14,7 @@ import { ProcessesComponent } from './components/juris/processes/processes.compo
 import { ProgressComponent } from './components/juris/progress/progress.component';
 import { CustomerServiceComponent } from './components/juris/customer-service/customer-service.component';
 import { ScheduleComponent } from './components/juris/schedule/schedule.component';
+import { ProcessDetailComponent } from './components/juris/processes/process-detail/process-detail.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,6 +29,7 @@ export const routes: Routes = [
     {  path: 'attachments',  component: AttachmentsComponent  },
     {  path: 'parties-involved',  component: PartiesInvolvedComponent  },
     {  path: 'processes',  component: ProcessesComponent  },
+    {  path: 'processes/:id/:mode' , component: ProcessDetailComponent },
     {  path: 'progress',  component: ProgressComponent  },    
     {  path: 'customer-service',  component: CustomerServiceComponent  },    
     {  path: 'schedule',  component: ScheduleComponent  },    

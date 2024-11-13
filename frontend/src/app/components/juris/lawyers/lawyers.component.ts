@@ -8,7 +8,8 @@ import { CommonModule, NgFor } from '@angular/common';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { LawyerDetailComponent } from './lawyer-detail/lawyer-detail.component';
 import { CrudMode } from '../../../enums/crud-mode.enum';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { imagesConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-lawyers',
@@ -30,24 +31,30 @@ export class LawyersComponent {
   private data: BehaviorSubject<LawyerDto[]> = new BehaviorSubject<LawyerDto[]>([]);
   public data$ = this.data.asObservable()
   
+  images = imagesConfig;
+
   constructor(private readonly service: LawyerService,
-              private readonly toast: HotToastService) {
+              private readonly toast: HotToastService,
+              private readonly translate: TranslateService) {
     this.load();
   }
 
   async load() {
     this.service.getAll().then(
-      (data: any) => {
-        console.log("data => ",data);
+      (data: any) => {        
         if (data)
           this.data.next(data);        
       },
       (error: any) => {
         debugger;
         if (error.message) {     
-          this.toast.error(error.message);
-        }
-        console.log("error => ", error);
+          const translatedErrorMessage = this.translate.instant(error.message);
+          if (translatedErrorMessage) {
+            this.toast.error(translatedErrorMessage);
+          } else {
+            this.toast.error(error.message);
+          }  
+        }        
       }
     );    
   }

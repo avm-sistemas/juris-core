@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-parties-involved-detail',
@@ -17,7 +18,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    MatToolbarModule
   ],
   templateUrl: './parties-involved-detail.component.html',
   styleUrl: './parties-involved-detail.component.scss'
@@ -52,8 +54,15 @@ export class PartiesInvolvedDetailComponent {
             }
           }).catch(
             (error: any) => {
-              if (error.message)
-                this.toast.error(error.message)
+              if (error.message) {
+                const translatedErrorMessage = this.translate.instant(error.message);
+                if (translatedErrorMessage) {
+                  this.toast.error(translatedErrorMessage);
+                } else {
+                  this.toast.error(error.message);
+                }    
+              }
+                
             }
         )        
       }  
@@ -101,7 +110,12 @@ export class PartiesInvolvedDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -120,7 +134,12 @@ export class PartiesInvolvedDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -137,7 +156,12 @@ export class PartiesInvolvedDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );        

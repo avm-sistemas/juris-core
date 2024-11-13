@@ -12,6 +12,13 @@ export const apiConfig = {
   pbhost: 'http://127.0.0.1:8090'
 }
 
+export const imagesConfig = {
+  url_svg_view: '/assets/images/svg/visibility.svg',
+  url_svg_edit: '/assets/images/svg/edit.svg',
+  url_svg_delete: '/assets/images/svg/delete.svg',
+  url_svg_new: '/assets/images/svg/add_circle.svg',
+}
+
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
     new TranslateHttpLoader(http, './assets/i18n/', '.json');
 

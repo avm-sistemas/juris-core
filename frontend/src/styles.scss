@@ -24,28 +24,63 @@ body {
 ::ng-deep .navbar-color {background-color: #494d50; color: white;}
 ::ng-deep .router-link-active {background-color: #414548;}
 ::ng-deep .no-border {border-radius: 0px;}
-
 ::ng-deep .toolbar-color { background-color: #616466; color: white; }
 ::ng-deep .center {
-margin-left: auto;
-margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 ::ng-deep .v-center {
-margin-top: auto;
-margin-bottom: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-
 ::ng-deep .txt-bold {font-weight: bold;}
-
 ::ng-deep .selected {background-color: gainsboro;}
-
 ::ng-deep p {
 font-family: Lato;
 }
-
 ::ng-deep .mat-icon {
   font-size: 25px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.svg-icon-button-new {
+  /* to black */
+  filter: invert(1);
+  /* or to blue */
+  //filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);    
+}
+
+.svg-icon-button-view {
+  /* to black */
+  filter: invert(1);
+  /* or to blue */
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);    
+}
+
+.svg-icon-button-edit {
+  /* to black */
+  filter: invert(1);
+  /* or to blue */
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(10deg);    
+}
+
+.svg-icon-button-delete {
+  /* to black */
+  filter: invert(1);
+  /* or to blue */
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(280deg);    
+}
+
+.btn-sem-borda {
+  border-style: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+

@@ -9,6 +9,7 @@ import { ProgressDetailComponent } from './progress-detail/progress-detail.compo
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CrudMode } from '../../../enums/crud-mode.enum';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { imagesConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-progress',
@@ -30,6 +31,8 @@ export class ProgressComponent {
   private data: BehaviorSubject<ProgressDto[]> = new BehaviorSubject<ProgressDto[]>([]);
   public data$ = this.data.asObservable()
 
+  images = imagesConfig;
+  
   constructor(private readonly service: ProgressService,
               private readonly toast: HotToastService,
               private readonly translate: TranslateService) {

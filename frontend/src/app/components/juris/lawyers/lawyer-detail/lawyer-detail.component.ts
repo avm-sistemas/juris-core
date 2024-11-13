@@ -8,6 +8,7 @@ import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { LawyerDto } from '../../../../dtos/lawyer.dto';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-lawyer-detail',
@@ -17,7 +18,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    MatToolbarModule
   ],
   templateUrl: './lawyer-detail.component.html',
   styleUrl: './lawyer-detail.component.scss'
@@ -52,8 +54,14 @@ export class LawyerDetailComponent implements OnInit {
             }
           }).catch(
             (error: any) => {
-              if (error.message)
-                this.toast.error(error.message)
+              if (error.message) {
+                const translatedErrorMessage = this.translate.instant(error.message);
+                if (translatedErrorMessage) {
+                  this.toast.error(translatedErrorMessage);
+                } else {
+                  this.toast.error(error.message);
+                }    
+              }
             }
         )        
       }  
@@ -104,7 +112,12 @@ export class LawyerDetailComponent implements OnInit {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -126,7 +139,12 @@ export class LawyerDetailComponent implements OnInit {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -147,7 +165,12 @@ export class LawyerDetailComponent implements OnInit {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );        

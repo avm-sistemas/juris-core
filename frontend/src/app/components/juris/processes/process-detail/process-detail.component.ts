@@ -14,6 +14,9 @@ import { PartiesInvolvedDto } from '../../../../dtos/parties-involved.dto';
 import { BehaviorSubject } from 'rxjs';
 import { CustomerDto } from '../../../../dtos/customer.dto';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute, Route, Router, RouterModule, Routes } from '@angular/router';
+import { ELoadType } from '../../../../enums/load-type.enum';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-process-detail',
@@ -23,19 +26,25 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    RouterModule,
+    MatToolbarModule
   ],
   templateUrl: './process-detail.component.html',
   styleUrl: './process-detail.component.scss'
 })
 export class ProcessDetailComponent {
   CRUDMODE = CrudMode;
-  readonly dialogRef = inject(MatDialogRef<ProcessDetailComponent>); 
-  readonly data = inject<any>(MAT_DIALOG_DATA);
+  ELOADTYPE = ELoadType;
+
+  readonly dialogRef: any; // = inject(MatDialogRef<ProcessDetailComponent>); 
+  readonly data: any; // = inject<any>(MAT_DIALOG_DATA);
 
   mode: CrudMode = CrudMode.NONE;
 
   detailForm: FormGroup = this.createForm();
+
+  numero: string = '';
 
   private advogados: BehaviorSubject<LawyerDto[]> = new BehaviorSubject<LawyerDto[]>([]);
   public advogados$ = this.advogados.asObservable();
@@ -52,44 +61,68 @@ export class ProcessDetailComponent {
   private customers: BehaviorSubject<CustomerDto[]> = new BehaviorSubject<CustomerDto[]>([]);
   public customers$ = this.customers.asObservable();
 
+  private id?: number;
+
+  loadType: ELoadType = ELoadType.NONE;
+
   constructor(private readonly service: ProcessService,
               private readonly toast: HotToastService,
-              private readonly translate: TranslateService) {
+              private readonly translate: TranslateService,
+              private readonly activatedRoute: ActivatedRoute,
+              private readonly router: Router) {
+    this.id  = this.activatedRoute.snapshot.params['id'];
+    this.mode  = this.activatedRoute.snapshot.params['mode'];
+    console.log('constructor | id => ', this.id, ' mode => ', this.mode);
+    try {
+      this.dialogRef = inject(MatDialogRef<ProcessDetailComponent>); 
+      this.data = inject<any>(MAT_DIALOG_DATA);          
+    } catch (error: any) {
+      //this error is a calculated error
+      //console.log(error?.message);
+    }
   }
 
   ngOnInit(): void {
+
     if (this.data) {
-      const id = this.data?.id;
+      this.loadType = ELoadType.DIALOG;
+      this.id = this.data?.id;
       this.mode = this.data?.mode;      
-      console.log('id => ', id, ' mode => ', this.mode);
-      if (this.data.id) {
-        this.service.getById(id).then(
-          (response: any) => {
-            if (response) {
-              console.log("response => ", response)
-              this.detailForm = this.updateForm(response.id, response.descricao, response.numero, response.status, response.tipo,
-                                                response.advogados, response.andamentos, response.anexos, response.partes);
+    } else {
+      this.loadType = ELoadType.ROUTE;
+    }
 
-              this.fillDataSets(response.expand);
-              /*
-              this.advogados = response.advogados;
-              this.andamentos = response.andamentos;
-              this.anexos = response.anexos;
-              this.partes_envolvidas = response.partes_envolvidas;
-              */
+    console.log('ngOnInit   | id => ', this.id, ' mode => ', this.mode);
 
-              if (this.mode == CrudMode.READ) {
-                this.detailForm.disable();
+    if (this.id) {
+      const internalId = this.id.toString();
+      this.service.getById(internalId).then(
+        (response: any) => {
+          if (response) {
+            console.log("response => ", response)
+            this.detailForm = this.updateForm(response.id, response.descricao, response.numero, response.status, response.tipo,
+                                              response.advogados, response.andamentos, response.anexos, response.partes);
+
+            this.fillDataSets(response.expand);
+
+            if (this.mode == CrudMode.READ) {
+              this.detailForm.disable();
+            }
+          }
+        }).catch(
+          (error: any) => {
+            if (error.message) {
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
               }
             }
-          }).catch(
-            (error: any) => {
-              if (error.message)
-                this.toast.error(error.message)
-            }
-        )        
-      }  
-    }
+              
+          }
+      )        
+    }    
   }
 
   fillDataSets(response: any) {
@@ -125,6 +158,7 @@ export class ProcessDetailComponent {
   }
 
   updateForm(id: string, descricao: string, numero: string, status: string, tipo: string, advogados?: any[], andamentos?: any[], anexos?: any[], partes?: any[], expand?: any): FormGroup {    
+    this.numero = numero;
     return new FormGroup({
       id: new FormControl(id),
       descricao: new FormControl(descricao),
@@ -161,7 +195,12 @@ export class ProcessDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -183,7 +222,12 @@ export class ProcessDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -205,7 +249,12 @@ export class ProcessDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );        
@@ -213,5 +262,9 @@ export class ProcessDetailComponent {
         break;
       }      
     }
+  }
+
+  navigateToLista() {
+    this.router.navigate(['/processes']);
   }
 }

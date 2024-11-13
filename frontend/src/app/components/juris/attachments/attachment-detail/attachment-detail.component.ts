@@ -8,6 +8,7 @@ import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { AttachmentService } from '../../../../services/attachment.service';
 import { AttachmentDto } from '../../../../dtos/attachment.dto';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-attachment-detail',
@@ -17,7 +18,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     AngularMaterialModule, 
     ReactiveFormsModule, 
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    MatToolbarModule
   ],
   templateUrl: './attachment-detail.component.html',
   styleUrl: './attachment-detail.component.scss'
@@ -52,8 +54,14 @@ export class AttachmentDetailComponent {
             }
           }).catch(
             (error: any) => {
-              if (error.message)
-                this.toast.error(error.message)
+              if (error.message) {
+                const translatedErrorMessage = this.translate.instant(error.message);
+                if (translatedErrorMessage) {
+                  this.toast.error(translatedErrorMessage);
+                } else {
+                  this.toast.error(error.message);
+                }    
+              }
             }
         )        
       }  
@@ -105,7 +113,12 @@ export class AttachmentDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );
@@ -148,7 +161,12 @@ export class AttachmentDetailComponent {
         ).catch(
           (error: any) => {
             if (error.message) {
-              this.toast.error(error.message);
+              const translatedErrorMessage = this.translate.instant(error.message);
+              if (translatedErrorMessage) {
+                this.toast.error(translatedErrorMessage);
+              } else {
+                this.toast.error(error.message);
+              }  
             }
           }
         );        

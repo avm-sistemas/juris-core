@@ -9,6 +9,7 @@ import { CrudMode } from '../../../enums/crud-mode.enum';
 import { AttachmentDetailComponent } from './attachment-detail/attachment-detail.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { imagesConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-attachments',
@@ -29,6 +30,8 @@ export class AttachmentsComponent {
 
   private data: BehaviorSubject<AttachmentDto[]> = new BehaviorSubject<AttachmentDto[]>([]);
   public data$ = this.data.asObservable()
+
+  images = imagesConfig;
 
   constructor(private readonly service: AttachmentService,
               private readonly toast: HotToastService,

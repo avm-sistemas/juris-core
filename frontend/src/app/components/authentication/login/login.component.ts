@@ -62,7 +62,12 @@ export class LoginComponent {
           if (translatedMessage) {
 
           } else {
-            this.toast.error(error.message);
+            const translatedErrorMessage = this.translate.instant(error.message);
+            if (translatedErrorMessage) {
+              this.toast.error(translatedErrorMessage);
+            } else {
+              this.toast.error(error.message);
+            }            
           }            
         }
         console.log(error);
