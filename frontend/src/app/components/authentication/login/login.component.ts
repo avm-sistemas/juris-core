@@ -69,8 +69,7 @@ export class LoginComponent {
               this.toast.error(error.message);
             }            
           }            
-        }
-        console.log(error);
+        }        
       }
     )
   }

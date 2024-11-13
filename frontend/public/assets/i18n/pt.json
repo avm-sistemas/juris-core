@@ -138,6 +138,21 @@
 
     "grid:ATTACHMENTS:TITLE": "Anexos",
 
-    "Something went wrong while processing your request.": "Falha na Comunicação"
+    "Something went wrong while processing your request.": "Falha na Comunicação",
 
+    "detail:ATTACHMENTS:MSG:CREATE": "Anexo armazenado",
+    "detail:ATTACHMENTS:MSG:DELETE": "Anexo removido",
+    "detail:CUSTOMER:MSG:UPDATE": "Cliente actualizado",
+    "detail:CUSTOMER:MSG:CREATE": "Cliente criada",
+    "detail:CUSTOMER:MSG:DELETE": "Cliente removido",
+    "detail:LAWYER:MSG:UPDATE": "Advogado actualizado",
+    "detail:LAWYER:MSG:CREATE": "Advogado incluído",
+    "detail:LAWYER:MSG:DELETE": "Advogado removido",
+    "detail:PARTIES:MSG:UPDATE": "Parte envolvida actualizada",
+    "detail:PARTIES:MSG:CREATE": "Parte envolvida criada",
+    "detail:PARTIES:MSG:DELETE": "Parte envolvida removida",
+    "detail:PROGRESS:MSG:UPDATE": "Andamento actualizado",
+    "detail:PROGRESS:MSG:CREATE": "Andamento criado",
+    "detail:PROGRESS:MSG:DELETE": "Andamento removido",
+    "detail:PROCESS:MSG:UPDATE": "Processo actualizado"
 }

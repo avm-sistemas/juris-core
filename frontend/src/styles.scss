@@ -84,3 +84,10 @@ font-family: Lato;
   cursor: pointer;
 }
 
+::ng-deep .mat-row:nth-child(even){
+  background-color: white;
+}
+      
+::ng-deep .mat-row:nth-child(odd){
+  background-color: lightgray;
+}

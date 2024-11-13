@@ -41,8 +41,7 @@ export class PartiesInvolvedComponent {
 
   async load() {
     this.service.getAll().then(
-      (data: any) => {
-        console.log("data => ",data);
+      (data: any) => {        
         if (data)
           this.data.next(data);        
       },

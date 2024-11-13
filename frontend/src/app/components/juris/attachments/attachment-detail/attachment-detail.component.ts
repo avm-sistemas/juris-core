@@ -41,8 +41,7 @@ export class AttachmentDetailComponent {
   ngOnInit(): void {
     if (this.data) {
       const id = this.data?.id;
-      this.mode = this.data?.mode;      
-      console.log('id => ', id, ' mode => ', this.mode);
+      this.mode = this.data?.mode;            
       if (this.data.id) {
         this.service.getById(id).then(
           (response: any) => {
@@ -107,7 +106,8 @@ export class AttachmentDetailComponent {
 
         this.service.create(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer registered');
+            const translatedMessage = this.translate.instant('detail:ATTACHMENTS:MSG:CREATE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(
@@ -134,7 +134,8 @@ export class AttachmentDetailComponent {
 
         this.service.update(dto).then(
           (response: any) => {
-            this.toast.success('Lawyer updated');    
+            const translatedMessage = this.translate.instant('detail:ATTACHMENTS:MSG:UPDATE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(
@@ -155,7 +156,8 @@ export class AttachmentDetailComponent {
         dto.tamanho = this.detailForm.controls['tamanho'].value;        
         this.service.delete(dto).then(
           (response: any) => {            
-            this.toast.success('Lawyer deleted');
+            const translatedMessage = this.translate.instant('detail:ATTACHMENTS:MSG:DELETE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(

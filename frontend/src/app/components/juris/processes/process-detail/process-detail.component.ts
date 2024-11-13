@@ -72,7 +72,7 @@ export class ProcessDetailComponent {
               private readonly router: Router) {
     this.id  = this.activatedRoute.snapshot.params['id'];
     this.mode  = this.activatedRoute.snapshot.params['mode'];
-    console.log('constructor | id => ', this.id, ' mode => ', this.mode);
+    
     try {
       this.dialogRef = inject(MatDialogRef<ProcessDetailComponent>); 
       this.data = inject<any>(MAT_DIALOG_DATA);          
@@ -92,14 +92,13 @@ export class ProcessDetailComponent {
       this.loadType = ELoadType.ROUTE;
     }
 
-    console.log('ngOnInit   | id => ', this.id, ' mode => ', this.mode);
+    //console.log('ngOnInit   | id => ', this.id, ' mode => ', this.mode);
 
     if (this.id) {
       const internalId = this.id.toString();
       this.service.getById(internalId).then(
         (response: any) => {
-          if (response) {
-            console.log("response => ", response)
+          if (response) {            
             this.detailForm = this.updateForm(response.id, response.descricao, response.numero, response.status, response.tipo,
                                               response.advogados, response.andamentos, response.anexos, response.partes);
 
@@ -189,7 +188,8 @@ export class ProcessDetailComponent {
 
         this.service.create(dto).then(
           (response: any) => {
-            this.toast.success('Process registered');
+            const translatedMessage = this.translate.instant('detail:PROCESS:MSG:CREATE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(
@@ -216,7 +216,8 @@ export class ProcessDetailComponent {
 
         this.service.update(dto).then(
           (response: any) => {
-            this.toast.success('Process updated');    
+            const translatedMessage = this.translate.instant('detail:PROCESS:MSG:UPDATE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(
@@ -243,7 +244,8 @@ export class ProcessDetailComponent {
 
         this.service.delete(dto).then(
           (response: any) => {            
-            this.toast.success('Process deleted');
+            const translatedMessage = this.translate.instant('detail:PROCESS:MSG:DELETE');
+            this.toast.success(translatedMessage);
             this.dialogRef.close();
           }
         ).catch(

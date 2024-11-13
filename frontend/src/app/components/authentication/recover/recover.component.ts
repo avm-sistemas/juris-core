@@ -41,7 +41,7 @@ export class RecoverComponent {
 
   recover() {
     const email = this.recoverForm.controls['email'].value;
-    console.log(email);
+    //console.log(email);
   }
 
 }

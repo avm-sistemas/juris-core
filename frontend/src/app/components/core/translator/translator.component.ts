@@ -23,8 +23,7 @@ export class TranslatorComponent {
     this.languages = this.translate.getLangs();
   }
 
-  onChange(event: any) {    
-    console.log(event);
+  onChange(event: any) {        
     this.translate.use(this.selected);
   }
 

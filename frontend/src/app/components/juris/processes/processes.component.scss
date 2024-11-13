@@ -33,5 +33,7 @@ font-family: Lato;
   font-size: 25px;
 }
 
-
+::ng-deep tr:nth-child(even) {
+  background-color: lightgray !important;
+}
 
