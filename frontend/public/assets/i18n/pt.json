@@ -7,7 +7,7 @@
     "Processes": "Processos",
     "Progress": "Andamentos",
     "Customer Service": "Atendimentos",
-    "Schedule": "Agenda",
+    "Schedule": "Agenda",    
     "Attachments": "Anexos",
 
     "Files": "Meus Ficheiros",
@@ -134,7 +134,9 @@
     "detail:PROCESS:Progress:Status": "Status",
     "detail:PROCESS:Attachments:Name": "Nome",
 
-    "grid:CUSTOMER-SERVICE:TITLE": "Atendimentos",
+    "grid:CUSTOMER-SERVICE:TITLE": "ATENDIMENTOS",
+
+    "grid:SCHEDULE:TITLE": "AGENDA",
 
     "grid:ATTACHMENTS:TITLE": "Anexos",
 
