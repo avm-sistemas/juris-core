@@ -20,6 +20,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { imagesConfig } from '../../../../app.config';
 import { LawyerDetailComponent } from '../../lawyers/lawyer-detail/lawyer-detail.component';
 import { SelectLawyerComponent } from '../../shared/select-lawyer/select-lawyer.component';
+import { SelectCustomerComponent } from '../../shared/select-customer/select-customer.component';
+import { SelectProgressComponent } from '../../shared/select-progress/select-progress.component';
+import { SelectAttachmentsComponent } from '../../shared/select-attachments/select-attachments.component';
+import { SelectPartiesComponent } from '../../shared/select-parties/select-parties.component';
 
 @Component({
   selector: 'app-process-detail',
@@ -105,6 +109,7 @@ export class ProcessDetailComponent {
       this.service.getById(internalId).then(
         (response: any) => {
           if (response) {            
+            debugger;
             this.detailForm = this.updateForm(response);
 
             this.fillDataSets(response.expand);
@@ -129,21 +134,24 @@ export class ProcessDetailComponent {
     }    
   }
 
-  fillDataSets(response: any) {
-    this.advogados.next([]);
-    this.advogados.next(response?.advogados);
-
-    this.andamentos.next([]);
-    this.andamentos.next(response?.andamentos);
-
-    this.anexos.next([]);
-    this.anexos.next(response?.anexos);
-
-    this.partes_envolvidas.next([]);
-    this.partes_envolvidas.next(response?.partes_envolvidas);
-
-    this.customers.next([]);
-    this.customers.next(response?.customers);
+  fillDataSets(response: any) {    
+    try {
+      this.advogados.next([]);
+      this.advogados.next(response?.advogados || []);
+  
+      this.andamentos.next([]);
+      this.andamentos.next(response?.andamentos || []);
+  
+      this.anexos.next([]);
+      this.anexos.next(response?.anexos || []);
+  
+      this.partes_envolvidas.next([]);
+      this.partes_envolvidas.next(response?.partes_envolvidas || []);
+  
+      this.customers.next([]);
+      this.customers.next(response?.clientes || []);        
+    } catch (error) {      
+    }
   }
 
   createForm(): FormGroup {
@@ -153,6 +161,7 @@ export class ProcessDetailComponent {
       numero: new FormControl(''),
       status: new FormControl(''),
       tipo: new FormControl(''),
+      //clientes: new FormControl([]),
       //advogados: new FormControl([]),
       //andamentos: new FormControl([]),
       //anexos: new FormControl([]),
@@ -169,10 +178,11 @@ export class ProcessDetailComponent {
       numero: new FormControl(response.numero),
       status: new FormControl(response.status),
       tipo: new FormControl(response.tipo),
-      advogados: new FormControl(response?.advogados || []),
-      andamentos: new FormControl(response?.andamentos || []),
-      anexos: new FormControl(response?.anexos || []),
-      partes_envolvidas: new FormControl(response?.partes || []),
+      //clientes: new FormControl(response?.clientes || []),
+      //advogados: new FormControl(response?.advogados || []),
+      //andamentos: new FormControl(response?.andamentos || []),
+      //anexos: new FormControl(response?.anexos || []),
+      //partes_envolvidas: new FormControl(response?.partes || []),
       expand: new FormControl(response?.expand || [])
     });
   }
@@ -264,8 +274,7 @@ export class ProcessDetailComponent {
               }  
             }
           }
-        );        
-
+        );
         break;
       }      
     }
@@ -295,8 +304,7 @@ export class ProcessDetailComponent {
     });
   }  
 
-  insertLawyers(data: []) {
-    console.log('insert data', data);
+  protected insertLawyers(data: []) {
     const processId = this.id?.toString() || '';
     if (processId == '') {
       this.toast.info('process not identified');
@@ -317,19 +325,164 @@ export class ProcessDetailComponent {
   }
 
   openDialogCustomer(id: any, mode: CrudMode) {
+    const dialogRef = this.dialog.open(SelectCustomerComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '90%',
+      //height: '90%',
+      minWidth: '460px',
+      disableClose: true      
+    });
 
+    dialogRef.afterClosed().subscribe(result => {      
+      if (result !== undefined) {        
+        this.insertCustomers(result.customers);
+        this.load();
+      }
+    });
+  }
+
+  protected insertCustomers(data: []) {
+    const processId = this.id?.toString() || '';
+    if (processId == '') {
+      this.toast.info('process not identified');
+      return;
+    }
+    data.forEach(
+      (customer: any) => {        
+        this.service.insertCustomer(processId, customer).then(
+          (data: any) => {
+            this.toast.info('customer inserted');            
+          }
+        ).catch(
+          (error: any) => {console.log('error catch => ', error)}
+        );        
+      }
+    )
   }
 
   openDialogParties(id: any, mode:CrudMode) {
+    const dialogRef = this.dialog.open(SelectPartiesComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '90%',
+      //height: '90%',
+      minWidth: '460px',
+      disableClose: true      
+    });
 
+    dialogRef.afterClosed().subscribe(result => {      
+      if (result !== undefined) {        
+        this.insertParties(result.partes_envolvidas);
+        this.load();
+      }
+    });
   }
+
+  protected insertParties(data: []) {
+    const processId = this.id?.toString() || '';
+    if (processId == '') {
+      this.toast.info('process not identified');
+      return;
+    }
+    data.forEach(
+      (party: any) => {        
+        this.service.insertParties(processId, party).then(
+          (data: any) => {
+            this.toast.info('parties inserted');
+            console.log('data => ', data);
+          }
+        ).catch(
+          (error: any) => {console.log('error catch => ', error)}
+        );        
+      }
+    )
+  } 
 
   openDialogProgress(id: any, mode: CrudMode) {
+    const dialogRef = this.dialog.open(SelectProgressComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '90%',
+      //height: '90%',
+      minWidth: '460px',
+      disableClose: true      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {      
+      if (result !== undefined) {        
+        this.insertProgress(result.progress);
+        this.load();
+      }
+    });
 
   }
+
+  private insertProgress(data: []) {
+    const processId = this.id?.toString() || '';
+    if (processId == '') {
+      this.toast.info('process not identified');
+      return;
+    }
+    data.forEach(
+      (progress: any) => {        
+        this.service.insertProgress(processId, progress).then(
+          (data: any) => {
+            this.toast.info('progress inserted');
+            console.log('data => ', data);
+          }
+        ).catch(
+          (error: any) => {console.log('error catch => ', error)}
+        );        
+      }
+    )
+
+  } 
 
   openDialogAttachment(id: any, mode: CrudMode) {
+    const dialogRef = this.dialog.open(SelectAttachmentsComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '90%',
+      //height: '90%',
+      minWidth: '460px',
+      disableClose: true      
+    });
 
+    dialogRef.afterClosed().subscribe(result => {      
+      if (result !== undefined) {        
+        this.insertAttachments(result.attachments);
+        this.load();
+      }
+    });
   }
+
+  insertAttachments(data: []) {
+    const processId = this.id?.toString() || '';
+    if (processId == '') {
+      this.toast.info('process not identified');
+      return;
+    }
+    data.forEach(
+      (attachment: any) => {        
+        this.service.insertAttachment(processId, attachment).then(
+          (data: any) => {
+            this.toast.info('attachment inserted');
+            console.log('data => ', data);
+          }
+        ).catch(
+          (error: any) => {console.log('error catch => ', error)}
+        );        
+      }
+    )
+  }   
 
 }
