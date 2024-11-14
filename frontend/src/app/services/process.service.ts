@@ -69,7 +69,7 @@ export class ProcessService {
     });
   }
 
-  async insertAnexos(id: string, dto: AttachmentDto) {    
+  async insertAttachment(id: string, dto: AttachmentDto) {    
     return await this.client.collection(this.entityName).update(id, {
       'anexos+': dto.id
     });
