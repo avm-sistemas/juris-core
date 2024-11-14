@@ -1,0 +1,18 @@
+::ng-deep mat-table.scroll {
+    display: inline-block;
+    table-layout:auto;
+    max-height:180px;
+    overflow-y:overlay;
+    width: auto;
+}
+
+table.scroll thead, table.scroll tbody tr {
+    width:100%;
+}
+
+::ng-deep mat-header-cell {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+}

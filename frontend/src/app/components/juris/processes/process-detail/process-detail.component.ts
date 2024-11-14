@@ -289,11 +289,20 @@ export class ProcessDetailComponent {
 
     dialogRef.afterClosed().subscribe(result => {      
       if (result !== undefined) {        
-        this.toast.info(result);
+        this.insertLawyers(result.lawyers);
       }
-      //this.load();
     });
   }  
+
+  insertLawyers(data: []) {
+    debugger;
+    console.log('insert data', data);
+    data.forEach(
+      (lawyer: any) => {
+        this.toast.info(lawyer.nome);
+      }
+    )
+  }
 
   openDialogCustomer(id: any, mode: CrudMode) {
 
@@ -308,7 +317,7 @@ export class ProcessDetailComponent {
   }
 
   openDialogAttachment(id: any, mode: CrudMode) {
-    
+
   }
 
 }
