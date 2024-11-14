@@ -88,18 +88,6 @@
         </div>
 
         <div style="padding: 20px;">
-
-            <div style="background-color: yellowgreen;cursor: pointer;height:50px;" 
-                routerLink="/files">
-                <button mat-icon-button 
-                        routerLink="/files" routerLinkActive="router-link-active" 
-                        style="margin-top:8px;width: 100%;text-align: left;padding-top: 2px;" 
-                        title="Register">                        
-                    <mat-icon>inventory_2</mat-icon>                                                
-                    <span style="color:black;margin-bottom: 1px;">&nbsp;{{'Files'|translate}}</span>
-                </button>    
-            </div>
-            <div style="height: 10px;"></div>
             <div style="background-color: yellow;cursor: pointer;height:50px;" 
                 routerLink="/notifications">
                 <button mat-icon-button 
@@ -108,6 +96,17 @@
                         title="Notifications">
                     <mat-icon>bolt</mat-icon>
                     <span style="color:black">&nbsp;{{'Notifications'|translate}}</span>
+                </button>    
+            </div>
+            <div style="height: 10px;"></div>
+            <div style="background-color: yellowgreen;cursor: pointer;height:50px;" 
+                routerLink="/files">
+                <button mat-icon-button 
+                        routerLink="/files" routerLinkActive="router-link-active" 
+                        style="margin-top:8px;width: 100%;text-align: left;padding-top: 2px;" 
+                        title="Register">                        
+                    <mat-icon>inventory_2</mat-icon>                                                
+                    <span style="color:black;margin-bottom: 1px;">&nbsp;{{'Files'|translate}}</span>
                 </button>    
             </div>
             <div style="height: 10px;"></div>
@@ -129,23 +128,29 @@
 
     <div *ngIf="!logged" style="margin-top: 10px;">
         <div style="padding: 30px;">
-
             <div style="background-color: yellowgreen;cursor: pointer;" routerLink="/register">
-                <button mat-icon-button routerLink="/register" routerLinkActive="router-link-active" routerLink="/register" routerLinkActive="router-link-active" style="margin-top:8px;" title="Register">                        
+                <button mat-icon-button 
+                        routerLink="/register" routerLinkActive="router-link-active"
+                        style="margin-top:8px;" title="Register">                        
                     <mat-icon>app_registration</mat-icon>                                                
                     <span style="color:black">{{ 'Register' | translate }}</span>
                 </button>    
             </div>
             <div style="height: 10px;"></div>
             <div style="background-color: yellow;padding-top: 10px;cursor: pointer;" routerLink="/login">
-                <button mat-icon-button routerLink="/login" routerLinkActive="router-link-active" style="margin-top:8px" title="Login">
+                <button mat-icon-button 
+                        routerLink="/login" 
+                        routerLinkActive="router-link-active" 
+                        style="margin-top:8px" title="Login">
                     <mat-icon>login</mat-icon>
                     <span style="color:black">{{'Login'|translate}}</span>
                 </button>    
             </div>
             <div style="height: 10px;"></div>
             <div style="background-color: lightsalmon;cursor: pointer;" routerLink="/recover">
-                <button mat-icon-button routerLink="/recover" routerLinkActive="router-link-active" style="margin-top:8px" title="Recover">
+                <button mat-icon-button 
+                        routerLink="/recover" routerLinkActive="router-link-active" 
+                        style="margin-top:8px" title="Recover">
                     <mat-icon>settings</mat-icon>
                     <span style="color:black">{{'Recover'|translate}}</span>
                 </button>            
