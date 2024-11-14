@@ -89,7 +89,6 @@ export class ProcessDetailComponent {
   }
 
   ngOnInit(): void {
-
     if (this.data) {
       this.loadType = ELoadType.DIALOG;
       this.id = this.data?.id;
@@ -97,9 +96,10 @@ export class ProcessDetailComponent {
     } else {
       this.loadType = ELoadType.ROUTE;
     }
+    this.load();    
+  }
 
-    //console.log('ngOnInit   | id => ', this.id, ' mode => ', this.mode);
-
+  load() {
     if (this.id) {
       const internalId = this.id.toString();
       this.service.getById(internalId).then(
@@ -289,11 +289,32 @@ export class ProcessDetailComponent {
 
     dialogRef.afterClosed().subscribe(result => {      
       if (result !== undefined) {        
-        this.toast.info(result);
+        this.insertLawyers(result.lawyers);
+        this.load();
       }
-      //this.load();
     });
   }  
+
+  insertLawyers(data: []) {
+    console.log('insert data', data);
+    const processId = this.id?.toString() || '';
+    if (processId == '') {
+      this.toast.info('process not identified');
+      return;
+    }
+    data.forEach(
+      (lawyer: any) => {        
+        this.service.insertLawyer(processId, lawyer).then(
+          (data: any) => {
+            this.toast.info('lawyer inserted');
+            console.log('data => ', data);
+          }
+        ).catch(
+          (error: any) => {console.log('error catch => ', error)}
+        );        
+      }
+    )
+  }
 
   openDialogCustomer(id: any, mode: CrudMode) {
 
@@ -308,7 +329,7 @@ export class ProcessDetailComponent {
   }
 
   openDialogAttachment(id: any, mode: CrudMode) {
-    
+
   }
 
 }

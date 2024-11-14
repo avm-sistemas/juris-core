@@ -1,1 +1,50 @@
-<p>select-lawyer works!</p>
+<mat-toolbar class="toolbar-color py-5 mb-4">
+    <span class="center">{{'select:LAWYER:TITLE'|translate}}</span>
+</mat-toolbar>
+<mat-toolbar class="toolbar-color py-5 mb-4" style="background-color: lightgray;height: 40px;">    
+    <button class="btn-sem-borda" mat-icon-button (click)="createLawyer(null, CRUDMODE.CREATE)">
+        <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">
+        {{'grid:NEW'|translate}}
+    </button>
+</mat-toolbar>
+<div style="padding: 0px;">
+        
+        <div *ngIf="(data$ | async) as hasData">
+
+            <mat-table [dataSource]="hasData" matSort>
+                <!-- Checkbox column -->
+                <ng-container matColumnDef="select">
+                  <mat-header-cell *matHeaderCellDef style="max-width:70px">
+                    <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()">
+                    </mat-checkbox>
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row" style="max-width:70px">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+                <!-- Other columns -->
+                <ng-container matColumnDef="id">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{ row.nome }} </mat-cell>
+                </ng-container>
+                <!-- Add other columns as needed -->
+                <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+            </mat-table>
+
+            <div *ngIf="hasData.length == 0" style="text-align: center;margin-top: 50px;">
+                <p style="color:black">{{'grid:NO-DATA'|translate}}</p>                
+            </div>
+
+        </div>
+        <div style="padding: 20px">            
+            <button mat-raised-button (click)="close()" style="color:darkred">{{'detail:CLOSE'|translate}}</button>            
+            <button mat-raised-button (click)="selectLawyer()" type="submit" style="float: right;color:green" *ngIf="mode !== CRUDMODE.DETAIL_SELECT_CREATE">{{'select:SELECT'|translate}}</button>
+        </div>                    
+        
+</div>

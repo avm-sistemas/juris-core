@@ -82,7 +82,7 @@ export class ProcessesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {      
-      if (result !== undefined) {        
+      if (result !== undefined) {
         this.toast.info(result);
       }
       this.load();

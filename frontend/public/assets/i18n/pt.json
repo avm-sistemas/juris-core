@@ -66,6 +66,9 @@
     "detail:STORE": "Gravar",
     "detail:BACK": "Voltar",
 
+    "select:CLOSE": "Fechar",
+    "select:SELECT": "Seleccionar",
+
     "grid:LAWYER:TITLE": "ADVOGADOS",    
     "grid:LAWYER:Column:Name": "Nome",
     "grid:LAWYER:Column:OAB": "OAB",
@@ -157,5 +160,7 @@
     "detail:PROGRESS:MSG:UPDATE": "Andamento actualizado",
     "detail:PROGRESS:MSG:CREATE": "Andamento criado",
     "detail:PROGRESS:MSG:DELETE": "Andamento removido",
-    "detail:PROCESS:MSG:UPDATE": "Processo actualizado"
+    "detail:PROCESS:MSG:UPDATE": "Processo actualizado",
+
+    "select:LAWYER:TITLE": "SELECCIONE O(S) ADVOGADO(S)"
 }
