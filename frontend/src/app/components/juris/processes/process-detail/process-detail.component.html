@@ -37,6 +37,11 @@
         <mat-tab-group>
             <mat-tab label="Lawyers">
                 <ng-template matTabContent>
+                    <mat-toolbar class="toolbar-color py-5 mb-4" style="height: 40px;background-color: lightgray;">
+                        <button class="btn-sem-borda" mat-icon-button (click)="openDialogLawyer(null, CRUDMODE.DETAIL_SELECT_CREATE)">
+                            <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">                                
+                        </button>            
+                    </mat-toolbar>
                     <div style="padding-top: 10px;">                        
                         <table style="width: 100%;">
                             <thead>
@@ -57,6 +62,11 @@
             </mat-tab>
             <mat-tab label="Customers">
                 <ng-template matTabContent>
+                    <mat-toolbar class="toolbar-color py-5 mb-4" style="height: 40px;background-color: lightgray;">
+                        <button class="btn-sem-borda" mat-icon-button (click)="openDialogCustomer(null, CRUDMODE.DETAIL_SELECT_CREATE)">
+                            <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">                                
+                        </button>            
+                    </mat-toolbar>
                     <div style="padding-top: 10px;">                        
                         <table style="width: 100%;">
                             <thead>
@@ -80,6 +90,11 @@
 
             <mat-tab label="Parties Involved">
                 <ng-template matTabContent>
+                    <mat-toolbar class="toolbar-color py-5 mb-4" style="height: 40px;background-color: lightgray;">
+                        <button class="btn-sem-borda" mat-icon-button (click)="openDialogParties(null, CRUDMODE.DETAIL_SELECT_CREATE)">
+                            <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">                                
+                        </button>            
+                    </mat-toolbar>
                     <div style="padding-top: 10px;">                        
                         <table style="width: 100%;">
                             <thead>
@@ -98,6 +113,11 @@
             </mat-tab>
             <mat-tab label="Progress">
                 <ng-template matTabContent>
+                    <mat-toolbar class="toolbar-color py-5 mb-4" style="height: 40px;background-color: lightgray;">
+                        <button class="btn-sem-borda" mat-icon-button (click)="openDialogProgress(null, CRUDMODE.DETAIL_SELECT_CREATE)">
+                            <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">                                
+                        </button>            
+                    </mat-toolbar>
                     <div style="padding-top: 10px;">                        
                         <table style="width: 100%;">
                             <tr>
@@ -115,7 +135,12 @@
                 </ng-template>
             </mat-tab>
             <mat-tab label="Attachments">
-                <ng-template matTabContent>                    
+                <ng-template matTabContent>
+                    <mat-toolbar class="toolbar-color py-5 mb-4" style="height: 40px;background-color: lightgray;">
+                        <button class="btn-sem-borda" mat-icon-button (click)="openDialogAttachment(null, CRUDMODE.DETAIL_SELECT_CREATE)">
+                            <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">                                
+                        </button>            
+                    </mat-toolbar>
                     <div style="padding-top: 10px;">
                         <table style="width: 100%;">
                             <thead>
