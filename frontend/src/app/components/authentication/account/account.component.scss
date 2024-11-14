@@ -31,3 +31,18 @@ font-family: Lato;
 ::ng-deep .mat-icon {
   font-size: 25px;
 }
+
+.item {
+  background-color: dodgerblue;
+  color: white;
+  padding: 1rem;
+  height: 4rem;
+}
+
+.grid-container {
+  display: grid;  
+  //grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, 1fr);
+  /*justify-content: space-evenly;*/
+  
+}
