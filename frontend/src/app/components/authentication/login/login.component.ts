@@ -31,11 +31,10 @@ export class LoginComponent {
               private readonly router: Router,
               private readonly store: StoreService,
               private readonly toast: HotToastService,
-              private readonly translate: TranslateService) {
-    /*
+              private readonly translate: TranslateService) {    
     if (this.auth.isAuthenticated()) {
       this.router.navigate(['/home']);
-    }*/
+    }
     
   }
 

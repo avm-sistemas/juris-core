@@ -15,7 +15,7 @@ export class StoreService {
     this.getPocketBaseAuthToken();
   }
 
-  getPocketBaseAuthToken(): any {
+  getPocketBaseAuthToken(): any {        
     const pba_text = localStorage.getItem('pocketbase_auth') || '';
     if (pba_text) {
       const pba = JSON.parse(pba_text);
@@ -27,7 +27,7 @@ export class StoreService {
 
   isSet(): boolean {    
     const pba = this.getPocketBaseAuthToken();    
-    return (pba !== null && pba?.username !== '');
+    return (pba !== null && pba !== '' && pba !== undefined);
   }
 
   clearToken() {

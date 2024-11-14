@@ -28,7 +28,7 @@ export class RecoverComponent {
   recoverForm: FormGroup = this.createForm();
 
   constructor(private readonly auth: AuthService, private readonly router: Router) {
-    if (!this.auth.isAuthenticated()) {
+    if (this.auth.isAuthenticated()) {
       this.router.navigate(['/home']);
     }
   }
