@@ -9,9 +9,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { StoreService } from '../../../services/store.service';
-import * as jwt_decode from 'jwt-decode';
 import { AngularMaterialModule } from '../../../modules/angular-material.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { DashboardService } from '../../../services/dashboard.service';
 
 @Component({
   selector: 'app-account',
@@ -38,15 +38,34 @@ export class AccountComponent {
 
   user: any;
 
+  data: any;
+
   constructor(private readonly store: StoreService, 
               private readonly auth: AuthService,
-              private readonly router: Router) {  
+              private readonly router: Router,
+              private readonly dashboard: DashboardService) {  
     this.user = this.store.getPocketBaseAuthToken();                    
     this.logged = this.user !== null && this.user !== undefined;
+    this.loadDashboard();
   }
 
   logout() {    
     this.auth.logout();
   }
 
+  loadDashboard() {
+    this.dashboard.getData().then(
+      (response: any) => {
+        if (response) {
+          //console.log('response => ', response[0]);
+          this.data = response[0];
+        }
+      }).catch(
+        (error: any) => {
+          if (error.message) {
+            console.log(error.message);
+          }
+        }
+    )        
+  }
 }
