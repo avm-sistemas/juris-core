@@ -141,6 +141,7 @@
     "grid:ATTACHMENTS:TITLE": "Anexos",
 
     "Something went wrong while processing your request.": "Falha na Comunicação",
+    "The requested resource wasn't found.": "Algo não saiu como planeado",
 
     "detail:ATTACHMENTS:MSG:CREATE": "Anexo armazenado",
     "detail:ATTACHMENTS:MSG:DELETE": "Anexo removido",

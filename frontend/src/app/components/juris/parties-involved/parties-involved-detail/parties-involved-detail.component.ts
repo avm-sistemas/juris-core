@@ -47,7 +47,7 @@ export class PartiesInvolvedDetailComponent {
         this.service.getById(id).then(
           (response: any) => {
             if (response) {
-              this.detailForm = this.updateForm(response.id, response.name, response.cpfCnpj, response.endereco, response.telefone, response.email);              
+              this.detailForm = this.updateForm(response.id, response.nome, response.cpfCnpj, response.endereco, response.telefone, response.email);              
               if (this.mode == CrudMode.READ) {
                 this.detailForm.disable();
               }

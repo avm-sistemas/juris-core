@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule, FormControl, FormGroup } from '@angul
 import { AngularMaterialModule } from '../../../../modules/angular-material.module';
 import { ProcessService } from '../../../../services/process.service';
 import { ProcessDto } from '../../../../dtos/process.dto';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
 import { LawyerDto } from '../../../../dtos/lawyer.dto';
@@ -17,6 +17,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Route, Router, RouterModule, Routes } from '@angular/router';
 import { ELoadType } from '../../../../enums/load-type.enum';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { imagesConfig } from '../../../../app.config';
+import { LawyerDetailComponent } from '../../lawyers/lawyer-detail/lawyer-detail.component';
+import { SelectLawyerComponent } from '../../shared/select-lawyer/select-lawyer.component';
 
 @Component({
   selector: 'app-process-detail',
@@ -36,6 +39,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class ProcessDetailComponent {
   CRUDMODE = CrudMode;
   ELOADTYPE = ELoadType;
+  private readonly dialog = inject(MatDialog);
 
   readonly dialogRef: any; // = inject(MatDialogRef<ProcessDetailComponent>); 
   readonly data: any; // = inject<any>(MAT_DIALOG_DATA);
@@ -64,6 +68,8 @@ export class ProcessDetailComponent {
   private id?: number;
 
   loadType: ELoadType = ELoadType.NONE;
+
+  images = imagesConfig;
 
   constructor(private readonly service: ProcessService,
               private readonly toast: HotToastService,
@@ -99,8 +105,7 @@ export class ProcessDetailComponent {
       this.service.getById(internalId).then(
         (response: any) => {
           if (response) {            
-            this.detailForm = this.updateForm(response.id, response.descricao, response.numero, response.status, response.tipo,
-                                              response.advogados, response.andamentos, response.anexos, response.partes);
+            this.detailForm = this.updateForm(response);
 
             this.fillDataSets(response.expand);
 
@@ -126,19 +131,19 @@ export class ProcessDetailComponent {
 
   fillDataSets(response: any) {
     this.advogados.next([]);
-    this.advogados.next(response.advogados);
+    this.advogados.next(response?.advogados);
 
     this.andamentos.next([]);
-    this.andamentos.next(response.andamentos);
+    this.andamentos.next(response?.andamentos);
 
     this.anexos.next([]);
-    this.anexos.next(response.anexos);
+    this.anexos.next(response?.anexos);
 
     this.partes_envolvidas.next([]);
-    this.partes_envolvidas.next(response.partes_envolvidas);
+    this.partes_envolvidas.next(response?.partes_envolvidas);
 
     this.customers.next([]);
-    this.customers.next(response.customers);
+    this.customers.next(response?.customers);
   }
 
   createForm(): FormGroup {
@@ -156,19 +161,19 @@ export class ProcessDetailComponent {
     })
   }
 
-  updateForm(id: string, descricao: string, numero: string, status: string, tipo: string, advogados?: any[], andamentos?: any[], anexos?: any[], partes?: any[], expand?: any): FormGroup {    
-    this.numero = numero;
+  updateForm(response: any): FormGroup {    
+    this.numero = response?.numero;
     return new FormGroup({
-      id: new FormControl(id),
-      descricao: new FormControl(descricao),
-      numero: new FormControl(numero),
-      status: new FormControl(status),
-      tipo: new FormControl(tipo),
-      //advogados: new FormControl(advogados),
-      //andamentos: new FormControl(andamentos),
-      //anexos: new FormControl(anexos),
-      //partes_envolvidas: new FormControl(partes),
-      //expand: new FormControl(expand)
+      id: new FormControl(response.id),
+      descricao: new FormControl(response.descricao),
+      numero: new FormControl(response.numero),
+      status: new FormControl(response.status),
+      tipo: new FormControl(response.tipo),
+      advogados: new FormControl(response?.advogados || []),
+      andamentos: new FormControl(response?.andamentos || []),
+      anexos: new FormControl(response?.anexos || []),
+      partes_envolvidas: new FormControl(response?.partes || []),
+      expand: new FormControl(response?.expand || [])
     });
   }
 
@@ -269,4 +274,41 @@ export class ProcessDetailComponent {
   navigateToLista() {
     this.router.navigate(['/processes']);
   }
+
+  openDialogLawyer(id: any, mode: CrudMode): void {    
+    const dialogRef = this.dialog.open(SelectLawyerComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '90%',
+      //height: '90%',
+      minWidth: '460px',
+      disableClose: true      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {      
+      if (result !== undefined) {        
+        this.toast.info(result);
+      }
+      //this.load();
+    });
+  }  
+
+  openDialogCustomer(id: any, mode: CrudMode) {
+
+  }
+
+  openDialogParties(id: any, mode:CrudMode) {
+
+  }
+
+  openDialogProgress(id: any, mode: CrudMode) {
+
+  }
+
+  openDialogAttachment(id: any, mode: CrudMode) {
+    
+  }
+
 }
