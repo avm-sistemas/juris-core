@@ -1,7 +1,7 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CrudMode } from '../../../../enums/crud-mode.enum';
@@ -14,6 +14,8 @@ import { MatTableModule } from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { imagesConfig } from '../../../../app.config';
+import { LawyerDetailComponent } from '../../lawyers/lawyer-detail/lawyer-detail.component';
 
 @Component({
   selector: 'app-select-lawyer',
@@ -35,6 +37,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   styleUrl: './select-lawyer.component.scss'
 })
 export class SelectLawyerComponent {
+  
   CRUDMODE = CrudMode;
 
   mode: CrudMode = CrudMode.NONE;
@@ -45,12 +48,15 @@ export class SelectLawyerComponent {
 
   private _data: any;
 
+  private readonly dialog = inject(MatDialog);
   readonly dialogRef = inject(MatDialogRef<SelectLawyerComponent>); 
   readonly getParams = inject<any>(MAT_DIALOG_DATA);
 
   
   selection = new SelectionModel<any>(true, []);
   columns: string[] = ['select', 'id', 'name'];
+
+  images = imagesConfig;
 
   constructor(private readonly service: LawyerService,
               private readonly toast: HotToastService,
@@ -97,4 +103,22 @@ export class SelectLawyerComponent {
       lawyers: this.selection.selected
     })    
   }
+
+  createLawyer(id: any, mode: CrudMode): void {    
+    const dialogRef = this.dialog.open(LawyerDetailComponent, {
+      data: { 
+        id: id,
+        mode: mode
+      },
+      width: '90%',
+      //height: '90%',
+      minWidth: '460px',
+      disableClose: true      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {      
+        this.load();
+    });
+  }  
+
 }

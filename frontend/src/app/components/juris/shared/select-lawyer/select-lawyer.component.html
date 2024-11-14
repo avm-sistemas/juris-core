@@ -1,6 +1,12 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
     <span class="center">{{'select:LAWYER:TITLE'|translate}}</span>
 </mat-toolbar>
+<mat-toolbar class="toolbar-color py-5 mb-4" style="background-color: lightgray;height: 40px;">    
+    <button class="btn-sem-borda" mat-icon-button (click)="createLawyer(null, CRUDMODE.CREATE)">
+        <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">
+        {{'grid:NEW'|translate}}
+    </button>
+</mat-toolbar>
 <div style="padding: 0px;">
         
         <div *ngIf="(data$ | async) as hasData">

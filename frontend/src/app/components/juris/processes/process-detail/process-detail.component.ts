@@ -89,7 +89,6 @@ export class ProcessDetailComponent {
   }
 
   ngOnInit(): void {
-
     if (this.data) {
       this.loadType = ELoadType.DIALOG;
       this.id = this.data?.id;
@@ -97,9 +96,10 @@ export class ProcessDetailComponent {
     } else {
       this.loadType = ELoadType.ROUTE;
     }
+    this.load();    
+  }
 
-    //console.log('ngOnInit   | id => ', this.id, ' mode => ', this.mode);
-
+  load() {
     if (this.id) {
       const internalId = this.id.toString();
       this.service.getById(internalId).then(
@@ -290,6 +290,7 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe(result => {      
       if (result !== undefined) {        
         this.insertLawyers(result.lawyers);
+        this.load();
       }
     });
   }  
@@ -307,9 +308,6 @@ export class ProcessDetailComponent {
           (data: any) => {
             this.toast.info('lawyer inserted');
             console.log('data => ', data);
-          },
-          (error: any) => {
-            console.log('error => ', error)
           }
         ).catch(
           (error: any) => {console.log('error catch => ', error)}
