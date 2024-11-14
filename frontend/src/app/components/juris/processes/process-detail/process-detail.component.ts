@@ -295,11 +295,25 @@ export class ProcessDetailComponent {
   }  
 
   insertLawyers(data: []) {
-    debugger;
     console.log('insert data', data);
+    const processId = this.id?.toString() || '';
+    if (processId == '') {
+      this.toast.info('process not identified');
+      return;
+    }
     data.forEach(
-      (lawyer: any) => {
-        this.toast.info(lawyer.nome);
+      (lawyer: any) => {        
+        this.service.insertLawyer(processId, lawyer).then(
+          (data: any) => {
+            this.toast.info('lawyer inserted');
+            console.log('data => ', data);
+          },
+          (error: any) => {
+            console.log('error => ', error)
+          }
+        ).catch(
+          (error: any) => {console.log('error catch => ', error)}
+        );        
       }
     )
   }
