@@ -4,6 +4,8 @@ Juris Core is a Control of Legal Processes.
 
 Created using Angular and PocketBase low-code API
 
+### App :: Play
+[2024-11-15-juris-core.webm](https://github.com/user-attachments/assets/c0cebb35-1131-4b8a-bd99-6a791a01d259)
 
 ### App :: Home
 ![image](https://github.com/user-attachments/assets/9a345ed3-34f2-4200-b700-063ed3b3ab72)
