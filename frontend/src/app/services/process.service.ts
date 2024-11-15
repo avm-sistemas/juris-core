@@ -26,7 +26,7 @@ export class ProcessService {
   }
 
   async getById(id: string) {
-    const dto = await this.client.collection(this.entityName).getOne(id, { expand: "advogados, andamentos, partes_envolvidas, anexos" });
+    const dto = await this.client.collection(this.entityName).getOne(id, { expand: "advogados, andamentos, partes_envolvidas, clientes, anexos" });
     return dto;
   }
 

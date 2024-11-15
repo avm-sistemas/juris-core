@@ -1,0 +1,12 @@
+<table style="width: 100%;">
+    <tr>
+        <th style="text-align: left;">{{'detail:PROCESS:Progress:Date'|translate}}</th>
+        <th style="text-align: left;">{{'detail:PROCESS:Progress:Description'|translate}}</th>
+        <th>{{'detail:PROCESS:Progress:Status'|translate}}</th>
+    </tr>
+    <tr *ngFor="let p of progresses$ | async" style="border-bottom:1px solid gray">
+        <td>{{ p.dataAndamento | date: 'dd/MM/YYYY' }}</td>
+        <td>{{ p.descricao }}</td>
+        <td>{{ p.statusAtual }}</td>
+    </tr>
+</table>

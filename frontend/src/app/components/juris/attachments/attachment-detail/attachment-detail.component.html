@@ -1,14 +1,25 @@
 <mat-toolbar class="toolbar-color py-5 mb-4">
-    <span class="center">{{'detail:ATTACHMENTS:TITLE'|translate}}</span>
+    <span class="center">{{'select:ATTACHMENTS:TITLE'|translate}}</span>
 </mat-toolbar>
 <div style="padding: 30px;">
     <form [formGroup]="detailForm">
     
         <div style="padding-top: 10px;">
-            <mat-label>Upload</mat-label><br>
+            <mat-label>Descrição</mat-label><br>
             <label>
-                <input matInput type="file"  style="width: 100%;line-height: 25px;">
+                <input mat-input type="text" formControlName="descricao"  style="width: 100%;line-height: 25px;">
             </label>                        
+        </div>
+
+        <div style="padding-top: 10px;">
+            <mat-label>Ficheiro</mat-label><br>
+            <label>
+                <div (click)="uploadFile.click()">
+                    <button mat-raised-button color="primary">Choose File</button>
+                    {{ files[0]?.name }}
+                    <input #uploadFile (change)="upload($event)" type='file' style="display:none"/> 
+                 </div>
+            </label>
         </div>
             
         <div style="padding-top: 20px;">            

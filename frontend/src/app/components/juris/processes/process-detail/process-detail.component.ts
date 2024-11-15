@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormControl, FormGroup } from '@angular/forms';
 import { AngularMaterialModule } from '../../../../modules/angular-material.module';
 import { ProcessService } from '../../../../services/process.service';
@@ -24,21 +24,32 @@ import { SelectCustomerComponent } from '../../shared/select-customer/select-cus
 import { SelectProgressComponent } from '../../shared/select-progress/select-progress.component';
 import { SelectAttachmentsComponent } from '../../shared/select-attachments/select-attachments.component';
 import { SelectPartiesComponent } from '../../shared/select-parties/select-parties.component';
+import { ListProgressComponent } from "../../shared/list-progress/list-progress.component";
+import { ListLawyersComponent } from "../../shared/list-lawyers/list-lawyers.component";
+import { ListCustomersComponent } from "../../shared/list-customers/list-customers.component";
+import { ListPartiesComponent } from "../../shared/list-parties/list-parties.component";
+import { ListAttachmentsComponent } from "../../shared/list-attachments/list-attachments.component";
 
 @Component({
   selector: 'app-process-detail',
   standalone: true,
-  imports: [ 
-    CommonModule, 
-    AngularMaterialModule, 
-    ReactiveFormsModule, 
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
     FormsModule,
     TranslateModule,
     RouterModule,
-    MatToolbarModule
-  ],
+    MatToolbarModule,
+    ListProgressComponent,
+    ListLawyersComponent,
+    ListCustomersComponent,
+    ListPartiesComponent,
+    ListAttachmentsComponent
+],
   templateUrl: './process-detail.component.html',
-  styleUrl: './process-detail.component.scss'
+  styleUrl: './process-detail.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProcessDetailComponent {
   CRUDMODE = CrudMode;
@@ -88,6 +99,7 @@ export class ProcessDetailComponent {
       this.data = inject<any>(MAT_DIALOG_DATA);          
     } catch (error: any) {
       //this error is a calculated error
+      //ocuurs when component is access by route, not by dialog
       //console.log(error?.message);
     }
   }
@@ -103,16 +115,16 @@ export class ProcessDetailComponent {
     this.load();    
   }
 
-  load() {
+  protected load() {
     if (this.id) {
+      console.log('load');
       const internalId = this.id.toString();
       this.service.getById(internalId).then(
         (response: any) => {
-          if (response) {            
-            debugger;
-            this.detailForm = this.updateForm(response);
+          if (response) {
+            Object.assign(response,response.expand);
 
-            this.fillDataSets(response.expand);
+            this.detailForm = this.updateForm(response);
 
             if (this.mode == CrudMode.READ) {
               this.detailForm.disable();
@@ -120,23 +132,16 @@ export class ProcessDetailComponent {
           }
         }).catch(
           (error: any) => {
-            if (error.message) {
-              const translatedErrorMessage = this.translate.instant(error.message);
-              if (translatedErrorMessage) {
-                this.toast.error(translatedErrorMessage);
-              } else {
-                this.toast.error(error.message);
-              }
-            }
-              
+            this.translatedErrorMessage(error);
           }
       )        
     }    
   }
 
-  fillDataSets(response: any) {    
-    try {
+  protected fillDataSets(response: any) {    
+    try {      
       this.advogados.next([]);
+
       this.advogados.next(response?.advogados || []);
   
       this.andamentos.next([]);
@@ -149,12 +154,12 @@ export class ProcessDetailComponent {
       this.partes_envolvidas.next(response?.partes_envolvidas || []);
   
       this.customers.next([]);
-      this.customers.next(response?.clientes || []);        
+      this.customers.next(response?.clientes || response?.expand?.clientes || []);        
     } catch (error) {      
     }
   }
 
-  createForm(): FormGroup {
+  private createForm(): FormGroup {
     return new FormGroup({
       id: new FormControl(''),
       descricao: new FormControl(''),
@@ -170,8 +175,9 @@ export class ProcessDetailComponent {
     })
   }
 
-  updateForm(response: any): FormGroup {    
+  private updateForm(response: any): FormGroup {
     this.numero = response?.numero;
+    this.fillDataSets(response);
     return new FormGroup({
       id: new FormControl(response.id),
       descricao: new FormControl(response.descricao),
@@ -203,20 +209,12 @@ export class ProcessDetailComponent {
 
         this.service.create(dto).then(
           (response: any) => {
-            const translatedMessage = this.translate.instant('detail:PROCESS:MSG:CREATE');
-            this.toast.success(translatedMessage);
+            this.translatedSuccessMessage('detail:PROCESS:MSG:CREATE');            
             this.dialogRef.close();
           }
         ).catch(
           (error: any) => {
-            if (error.message) {
-              const translatedErrorMessage = this.translate.instant(error.message);
-              if (translatedErrorMessage) {
-                this.toast.error(translatedErrorMessage);
-              } else {
-                this.toast.error(error.message);
-              }  
-            }
+            this.translatedErrorMessage(error);
           }
         );
         break;
@@ -231,20 +229,12 @@ export class ProcessDetailComponent {
 
         this.service.update(dto).then(
           (response: any) => {
-            const translatedMessage = this.translate.instant('detail:PROCESS:MSG:UPDATE');
-            this.toast.success(translatedMessage);
+            this.translatedSuccessMessage('detail:PROCESS:MSG:UPDATE');            
             this.dialogRef.close();
           }
         ).catch(
           (error: any) => {
-            if (error.message) {
-              const translatedErrorMessage = this.translate.instant(error.message);
-              if (translatedErrorMessage) {
-                this.toast.error(translatedErrorMessage);
-              } else {
-                this.toast.error(error.message);
-              }  
-            }
+            this.translatedErrorMessage(error);
           }
         );
         break;
@@ -259,20 +249,12 @@ export class ProcessDetailComponent {
 
         this.service.delete(dto).then(
           (response: any) => {            
-            const translatedMessage = this.translate.instant('detail:PROCESS:MSG:DELETE');
-            this.toast.success(translatedMessage);
+            this.translatedSuccessMessage('detail:PROCESS:MSG:DELETE');
             this.dialogRef.close();
           }
         ).catch(
           (error: any) => {
-            if (error.message) {
-              const translatedErrorMessage = this.translate.instant(error.message);
-              if (translatedErrorMessage) {
-                this.toast.error(translatedErrorMessage);
-              } else {
-                this.toast.error(error.message);
-              }  
-            }
+            this.translatedErrorMessage(error);
           }
         );
         break;
@@ -299,7 +281,9 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe(result => {      
       if (result !== undefined) {        
         this.insertLawyers(result.lawyers);
-        this.load();
+        setTimeout( () => {
+          this.load();
+        },2000)
       }
     });
   }  
@@ -314,11 +298,12 @@ export class ProcessDetailComponent {
       (lawyer: any) => {        
         this.service.insertLawyer(processId, lawyer).then(
           (data: any) => {
-            this.toast.info('lawyer inserted');
-            console.log('data => ', data);
+            this.translatedSuccessMessage('lawyer inserted');
           }
         ).catch(
-          (error: any) => {console.log('error catch => ', error)}
+          (error: any) => {
+            this.translatedErrorMessage(error);
+          }
         );        
       }
     )
@@ -339,7 +324,9 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe(result => {      
       if (result !== undefined) {        
         this.insertCustomers(result.customers);
-        this.load();
+        setTimeout( () => {
+          this.load();
+        },2000)
       }
     });
   }
@@ -354,10 +341,12 @@ export class ProcessDetailComponent {
       (customer: any) => {        
         this.service.insertCustomer(processId, customer).then(
           (data: any) => {
-            this.toast.info('customer inserted');            
+            this.translatedSuccessMessage('customer inserted');            
           }
         ).catch(
-          (error: any) => {console.log('error catch => ', error)}
+          (error: any) => {
+            this.translatedErrorMessage(error);
+          }
         );        
       }
     )
@@ -375,10 +364,12 @@ export class ProcessDetailComponent {
       disableClose: true      
     });
 
-    dialogRef.afterClosed().subscribe(result => {      
+    dialogRef.afterClosed().subscribe(result => {         
       if (result !== undefined) {        
-        this.insertParties(result.partes_envolvidas);
-        this.load();
+        this.insertParties(result.parties);
+        setTimeout( () => {
+          this.load();
+        },2000)        
       }
     });
   }
@@ -393,11 +384,12 @@ export class ProcessDetailComponent {
       (party: any) => {        
         this.service.insertParties(processId, party).then(
           (data: any) => {
-            this.toast.info('parties inserted');
-            console.log('data => ', data);
+            this.translatedSuccessMessage('parties inserted');            
           }
         ).catch(
-          (error: any) => {console.log('error catch => ', error)}
+          (error: any) => {
+            this.translatedErrorMessage(error);
+          }
         );        
       }
     )
@@ -415,16 +407,18 @@ export class ProcessDetailComponent {
       disableClose: true      
     });
 
-    dialogRef.afterClosed().subscribe(result => {      
+    dialogRef.afterClosed().subscribe(result => {            
       if (result !== undefined) {        
         this.insertProgress(result.progress);
-        this.load();
+        setTimeout( () => {
+          this.load();
+        },2000)        
       }
     });
 
   }
 
-  private insertProgress(data: []) {
+  protected insertProgress(data: []) {
     const processId = this.id?.toString() || '';
     if (processId == '') {
       this.toast.info('process not identified');
@@ -434,11 +428,12 @@ export class ProcessDetailComponent {
       (progress: any) => {        
         this.service.insertProgress(processId, progress).then(
           (data: any) => {
-            this.toast.info('progress inserted');
-            console.log('data => ', data);
+            this.translatedSuccessMessage('progress inserted');
           }
         ).catch(
-          (error: any) => {console.log('error catch => ', error)}
+          (error: any) => {
+            this.translatedErrorMessage(error);
+          }
         );        
       }
     )
@@ -460,29 +455,54 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe(result => {      
       if (result !== undefined) {        
         this.insertAttachments(result.attachments);
-        this.load();
+        setTimeout( () => {
+          this.load();
+        },2000)
       }
     });
   }
 
-  insertAttachments(data: []) {
+  protected insertAttachments(data: []) {
     const processId = this.id?.toString() || '';
     if (processId == '') {
       this.toast.info('process not identified');
       return;
     }
     data.forEach(
-      (attachment: any) => {        
+      (attachment: any) => {
         this.service.insertAttachment(processId, attachment).then(
           (data: any) => {
-            this.toast.info('attachment inserted');
-            console.log('data => ', data);
+            this.translatedSuccessMessage('attachment inserted');            
           }
         ).catch(
-          (error: any) => {console.log('error catch => ', error)}
+          (error: any) => {
+            this.translatedErrorMessage(error);
+          }
         );        
       }
     )
   }   
+
+  private translatedSuccessMessage(msg: string): string {
+    if (msg) {     
+      const translatedMessage = this.translate.instant(msg);
+      if (translatedMessage) {
+        this.toast.success(translatedMessage);
+      }
+      return translatedMessage;
+    } else return '';
+  }
+
+
+  private translatedErrorMessage(error: any) {
+    if (error.message) {     
+      const translatedErrorMessage = this.translate.instant(error.message);
+      if (translatedErrorMessage) {
+        this.toast.error(translatedErrorMessage);
+      } else {
+        this.toast.error(error.message);
+      }  
+    }    
+  }
 
 }

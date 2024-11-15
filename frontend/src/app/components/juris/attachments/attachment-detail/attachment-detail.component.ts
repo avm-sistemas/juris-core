@@ -9,6 +9,8 @@ import { AttachmentService } from '../../../../services/attachment.service';
 import { AttachmentDto } from '../../../../dtos/attachment.dto';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { toBase64 } from '../../../../lib/tobase64.lib';
+import { Observable, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-attachment-detail',
@@ -33,20 +35,29 @@ export class AttachmentDetailComponent {
 
   detailForm: FormGroup = this.createForm();
 
+  files: any[] = [];
+  fileB64: any;
+
+  id: any;
+
   constructor(private readonly service: AttachmentService,
               private readonly toast: HotToastService,
               private readonly translate: TranslateService) {
   }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load() {
     if (this.data) {
-      const id = this.data?.id;
+      this.id = this.data?.id;
       this.mode = this.data?.mode;            
-      if (this.data.id) {
-        this.service.getById(id).then(
+      if (this.id) {
+        this.service.getById(this.id).then(
           (response: any) => {
             if (response) {
-              this.detailForm = this.updateForm(response.id, response.nome, response.oab, response.telefone, response.email, response.processos);              
+              this.detailForm = this.updateForm(response.id, response.descricao);
               if (this.mode == CrudMode.READ) {
                 this.detailForm.disable();
               }
@@ -70,22 +81,14 @@ export class AttachmentDetailComponent {
   createForm(): FormGroup {
     return new FormGroup({
       id: new FormControl(''),
-      name: new FormControl(''),
-      oab: new FormControl(''),
-      telephone: new FormControl(),
-      email: new FormControl(),
-      processos: new FormControl()      
+      descricao: new FormControl(''),
     })
   }
 
-  updateForm(id: string, name: string, oab: string, telephone: string, email: string, processes: any): FormGroup {    
+  updateForm(id: string, description: string): FormGroup {    
     return new FormGroup({
       id: new FormControl(id),
-      name: new FormControl(name),
-      oab: new FormControl(oab),
-      telephone: new FormControl(telephone),
-      email: new FormControl(email),
-      processos: new FormControl(processes)
+      descricao: new FormControl(description),
     });
   }
 
@@ -97,18 +100,20 @@ export class AttachmentDetailComponent {
   submit() {
     switch (this.mode) {
       case CrudMode.CREATE: { 
-        const dto = new AttachmentDto();        
-        dto.nome = this.detailForm.controls['nome'].value;
+        const dto = new AttachmentDto();
+        debugger;
+        dto.nome = this.files[0]?.name || '';
         dto.descricao = this.detailForm.controls['descricao'].value;
-        dto.conteudo = this.detailForm.controls['conteudo'].value;
-        dto.mime = this.detailForm.controls['mime'].value;
-        dto.tamanho = this.detailForm.controls['tamanho'].value;        
-
+        dto.conteudo = this.fileB64;
+        dto.mime = this.files[0]?.type || '';
+        dto.tamanho = this.files[0]?.size || '';
+        dto.arquivo = this.files[0];
+        
         this.service.create(dto).then(
           (response: any) => {
             const translatedMessage = this.translate.instant('detail:ATTACHMENTS:MSG:CREATE');
             this.toast.success(translatedMessage);
-            this.dialogRef.close();
+            this.dialogRef.close();            
           }
         ).catch(
           (error: any) => {
@@ -125,12 +130,14 @@ export class AttachmentDetailComponent {
         break;
       }
       case CrudMode.UPDATE: { 
-        const dto = new AttachmentDto();        
-        dto.nome = this.detailForm.controls['nome'].value;
+        const dto = new AttachmentDto();
+        dto.id = this.id;
+        dto.nome = this.files[0]?.name || '';
         dto.descricao = this.detailForm.controls['descricao'].value;
-        dto.conteudo = this.detailForm.controls['conteudo'].value;
-        dto.mime = this.detailForm.controls['mime'].value;
-        dto.tamanho = this.detailForm.controls['tamanho'].value;        
+        dto.conteudo = this.fileB64;
+        dto.mime = this.files[0]?.type || '';
+        dto.tamanho = this.files[0]?.size || '';
+        dto.arquivo = this.files[0];
 
         this.service.update(dto).then(
           (response: any) => {
@@ -148,12 +155,13 @@ export class AttachmentDetailComponent {
         break;
       }
       case CrudMode.DELETE: { 
-        const dto = new AttachmentDto();        
-        dto.nome = this.detailForm.controls['name'].value;
+        const dto = new AttachmentDto();
+        dto.id = this.id;
+        dto.nome = this.files[0]?.name || '';
         dto.descricao = this.detailForm.controls['descricao'].value;
-        dto.conteudo = this.detailForm.controls['conteudo'].value;
-        dto.mime = this.detailForm.controls['mime'].value;
-        dto.tamanho = this.detailForm.controls['tamanho'].value;        
+        dto.conteudo = this.files[0];
+        dto.mime = this.files[0]?.type || '';
+        dto.tamanho = this.files[0]?.size || '';
         this.service.delete(dto).then(
           (response: any) => {            
             const translatedMessage = this.translate.instant('detail:ATTACHMENTS:MSG:DELETE');
@@ -178,4 +186,20 @@ export class AttachmentDetailComponent {
     }
   }
 
+  upload(event:any) {
+    this.files = event?.target?.files;
+    console.log("files", this.files);
+    this.convertFile(event.target.files[0]).subscribe(base64 => {
+      this.fileB64 = base64;
+      console.log(base64);
+    });
+  }
+
+  convertFile(file : File) : Observable<string> {
+    const result = new ReplaySubject<string>(1);
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (event) => result.next(btoa(file.toString()));
+    return result;
+  }
 }

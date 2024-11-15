@@ -42,21 +42,8 @@
                             <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">                                
                         </button>            
                     </mat-toolbar>
-                    <div style="padding-top: 0px;min-height: 150px;">                      
-                        <table style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th style="text-align: left;">{{'detail:PROCESS:LAWYER:Name'|translate}}</th>
-                                    <th style="text-align: left;">{{'detail:PROCESS:LAWYER:E-Mail'|translate}}</th>
-                                </tr>    
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let p of advogados$ | async">
-                                    <td>{{ p.nome }}</td>
-                                    <td>{{ p.email }}</td>
-                                </tr>    
-                            </tbody>
-                        </table>
+                    <div style="padding-top: 0px;min-height: 150px;">
+                        <app-list-lawyers [lawyers$]="advogados$"></app-list-lawyers>
                     </div>                          
                 </ng-template>
             </mat-tab>
@@ -68,22 +55,7 @@
                         </button>            
                     </mat-toolbar>
                     <div style="padding-top: 0px;min-height: 150px;">
-                        <table style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th style="text-align: left;">{{'detail:PROCESS:Customer:Name'|translate}}</th>
-                                    <th style="text-align: left;">{{'detail:PROCESS:Customer:E-Mail'|translate}}</th>
-                                    <th style="text-align: left;">{{'detail:PROCESS:Customer:Telephone'|translate}}</th>
-                                </tr>                                
-                            </thead>
-                            <tbody>                                
-                                <tr *ngFor="let p of customers$ | async">
-                                    <td>{{ p.nome }}</td>
-                                    <td>{{ p.email }}</td>
-                                    <td>{{ p.telefone }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <app-list-customers [customers$]="customers$"></app-list-customers>
                     </div>                    
                 </ng-template>
             </mat-tab>
@@ -95,19 +67,8 @@
                             <img class="svg-icon-button-new" [src]="images.url_svg_new" style="width: 30px;">                                
                         </button>            
                     </mat-toolbar>
-                    <div style="padding-top: 0px;min-height: 150px;">                        
-                        <table style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th style="text-align: left;">{{'detail:PROCESS:Parties:Name'|translate}}</th>
-                                </tr>                                
-                            </thead>
-                            <tbody>                                
-                                <tr *ngFor="let p of partes_envolvidas$ | async">
-                                    <td>{{ p.nome }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div style="padding-top: 0px;min-height: 150px;">
+                        <app-list-parties [parties$]="partes_envolvidas$"></app-list-parties>
                     </div>                    
                 </ng-template>
             </mat-tab>
@@ -119,18 +80,7 @@
                         </button>            
                     </mat-toolbar>
                     <div style="padding-top: 0px;min-height: 150px;">                        
-                        <table style="width: 100%;">
-                            <tr>
-                                <th style="text-align: left;">{{'detail:PROCESS:Progress:Date'|translate}}</th>
-                                <th style="text-align: left;">{{'detail:PROCESS:Progress:Description'|translate}}</th>
-                                <th>{{'detail:PROCESS:Progress:Status'|translate}}</th>
-                            </tr>
-                            <tr *ngFor="let p of andamentos$ | async" style="border-bottom:1px solid gray">
-                                <td>{{ p.dataAndamento | date: 'dd/MM/YYYY' }}</td>
-                                <td>{{ p.descricao }}</td>
-                                <td>{{ p.statusAtual }}</td>
-                            </tr>
-                        </table>
+                        <app-list-progress [progresses$]="andamentos$" ></app-list-progress>
                     </div>
                 </ng-template>
             </mat-tab>
@@ -142,24 +92,18 @@
                         </button>            
                     </mat-toolbar>
                     <div style="padding-top: 0px;min-height: 150px;">
-                        <table style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th style="text-align: left;">{{'detail:PROCESS:Attachments:Name'|translate}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let p of anexos$ | async">
-                                    <td>{{ p.nome }}</td>
-                                </tr>    
-                            </tbody>
-                        </table>
+                        <app-list-attachments [attachments$]="anexos$"></app-list-attachments>
                     </div>                                   
                 </ng-template>
             </mat-tab>                
         </mat-tab-group>
 
         <div style="padding-top: 20px;">
+            <button mat-raised-button 
+                    *ngIf="loadType != ELOADTYPE.DIALOG"
+                    routerLink="/processes"
+                    style="color:darkgoldenrod" 
+                    >{{'login:BACK'|translate}}</button>
             <button mat-raised-button 
                     *ngIf="loadType === ELOADTYPE.DIALOG"
                     (click)="close()" 

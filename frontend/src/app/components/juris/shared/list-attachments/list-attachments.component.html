@@ -1,0 +1,18 @@
+<table style="width: 100%;">
+    <thead>
+        <tr>
+            <th style="text-align: left;">{{'detail:PROCESS:Attachments:Name'|translate}}</th>
+            <th style="text-align: left;">{{'detail:PROCESS:Attachments:Description'|translate}}</th>
+            <th style="text-align: left;">{{'detail:PROCESS:Attachments:Mime'|translate}}</th>
+            <th style="text-align: left;">{{'detail:PROCESS:Attachments:Size'|translate}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of attachments$ | async">
+            <td>{{ p.nome }}</td>
+            <td>{{ p.descricao }}</td>
+            <td>{{ p.mime }}</td>
+            <td>{{ p.tamanho }}</td>
+        </tr>    
+    </tbody>
+</table>

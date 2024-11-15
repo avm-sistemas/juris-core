@@ -13,6 +13,8 @@ export class AttachmentDto {
 
     expand?: any;
 
+    arquivo?: any;
+
     constructor() {
         this.nome = '';
         this.descricao = '';
