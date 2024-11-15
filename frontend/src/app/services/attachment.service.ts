@@ -26,7 +26,15 @@ export class AttachmentService {
   }
 
   async create(dto: AttachmentDto) {
-    const response = await this.client.collection(this.entityName).create(dto);
+    const formData = new FormData();
+    formData.append('nome',dto.nome);
+    formData.append('mime',dto.mime);
+    formData.append('descricao',dto.descricao);
+    formData.append('tamanho',dto.tamanho.toString());
+    formData.append('conteudo',dto.conteudo);
+    formData.append('arquivo',dto.arquivo);
+
+    const response = await this.client.collection(this.entityName).create(formData);
     return response;
   }
 

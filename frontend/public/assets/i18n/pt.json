@@ -135,7 +135,11 @@
     "detail:PROCESS:Progress:Date": "Data",
     "detail:PROCESS:Progress:Description": "Descrição",
     "detail:PROCESS:Progress:Status": "Status",
-    "detail:PROCESS:Attachments:Name": "Nome",
+
+    "detail:PROCESS:Attachments:Name": "Nome",    
+    "detail:PROCESS:Attachments:Description": "Descrição",
+    "detail:PROCESS:Attachments:Mime": "Tipo",
+    "detail:PROCESS:Attachments:Size": "Tamanho",
 
     "grid:CUSTOMER-SERVICE:TITLE": "ATENDIMENTOS",
 
@@ -162,5 +166,10 @@
     "detail:PROGRESS:MSG:DELETE": "Andamento removido",
     "detail:PROCESS:MSG:UPDATE": "Processo actualizado",
 
-    "select:LAWYER:TITLE": "SELECCIONE O(S) ADVOGADO(S)"
+    "select:LAWYER:TITLE": "SELECCIONE O(S) ADVOGADO(S)",
+    "select:PROGRESS:TITLE": "SELECCIONE O(S) ANDAMENTOS(S)",
+    "select:PARTIES:TITLE": "SELECCIONE A(S) PARTE(S)",
+    "select:ATTACHMENTS:TITLE": "SELECCIONE O(S) ANEXO(S)",
+    "select:CUSTOMERS:TITLE": "SELECCIONE O(S) CLIENTE(S)"
+
 }

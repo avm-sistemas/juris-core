@@ -1,0 +1,14 @@
+<table style="width: 100%;">
+    <thead>
+        <tr>
+            <th style="text-align: left;">{{'detail:PROCESS:LAWYER:Name'|translate}}</th>
+            <th style="text-align: left;">{{'detail:PROCESS:LAWYER:E-Mail'|translate}}</th>
+        </tr>    
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of lawyers$ | async">
+            <td>{{ p.nome }}</td>
+            <td>{{ p.email }}</td>
+        </tr>    
+    </tbody>
+</table>
