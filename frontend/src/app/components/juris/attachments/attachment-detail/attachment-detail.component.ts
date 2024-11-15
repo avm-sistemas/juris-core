@@ -9,7 +9,6 @@ import { AttachmentService } from '../../../../services/attachment.service';
 import { AttachmentDto } from '../../../../dtos/attachment.dto';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { toBase64 } from '../../../../lib/tobase64.lib';
 import { Observable, ReplaySubject } from 'rxjs';
 
 @Component({
@@ -57,7 +56,7 @@ export class AttachmentDetailComponent {
         this.service.getById(this.id).then(
           (response: any) => {
             if (response) {
-              this.detailForm = this.updateForm(response.id, response.descricao);
+              this.detailForm = this.updateForm(response);
               if (this.mode == CrudMode.READ) {
                 this.detailForm.disable();
               }
@@ -85,10 +84,12 @@ export class AttachmentDetailComponent {
     })
   }
 
-  updateForm(id: string, description: string): FormGroup {    
+  updateForm(response: any): FormGroup {
+    this.files = [];
+    this.files.push(response.arquivo);
     return new FormGroup({
-      id: new FormControl(id),
-      descricao: new FormControl(description),
+      id: new FormControl(response.id),
+      descricao: new FormControl(response.description)
     });
   }
 
@@ -108,7 +109,7 @@ export class AttachmentDetailComponent {
         dto.mime = this.files[0]?.type || '';
         dto.tamanho = this.files[0]?.size || '';
         dto.arquivo = this.files[0];
-        
+
         this.service.create(dto).then(
           (response: any) => {
             const translatedMessage = this.translate.instant('detail:ATTACHMENTS:MSG:CREATE');
@@ -132,11 +133,11 @@ export class AttachmentDetailComponent {
       case CrudMode.UPDATE: { 
         const dto = new AttachmentDto();
         dto.id = this.id;
-        dto.nome = this.files[0]?.name || '';
-        dto.descricao = this.detailForm.controls['descricao'].value;
+        dto.nome = dto.nome || this.files[0]?.name || '';
+        dto.descricao = this.detailForm.controls['descricao'].value || dto.descricao;
         dto.conteudo = this.fileB64;
-        dto.mime = this.files[0]?.type || '';
-        dto.tamanho = this.files[0]?.size || '';
+        dto.mime = dto.arquivo[0]?.type || '';
+        dto.tamanho = dto.arquivo[0]?.size || '';
         dto.arquivo = this.files[0];
 
         this.service.update(dto).then(

@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-select-parties',
@@ -22,7 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     MatCheckboxModule,
     MatTableModule,
-    TranslateModule
+    TranslateModule,
+    MatButtonModule
   ],
   templateUrl: './select-parties.component.html',
   styleUrl: './select-parties.component.scss'

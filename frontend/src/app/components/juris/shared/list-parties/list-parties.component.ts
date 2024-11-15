@@ -3,6 +3,7 @@ import { PartiesInvolvedDto } from '../../../../dtos/parties-involved.dto';
 import { CommonModule, NgFor } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list-parties',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
   imports: [
     CommonModule,    
     NgFor,
-    TranslateModule
+    TranslateModule    
   ],
   templateUrl: './list-parties.component.html',
   styleUrl: './list-parties.component.scss'

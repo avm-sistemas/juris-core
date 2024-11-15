@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-select-attachments',
@@ -22,7 +23,8 @@ import { MatTableModule } from '@angular/material/table';
     MatToolbarModule,
     MatCheckboxModule,
     MatTableModule,
-    TranslateModule
+    TranslateModule,
+    MatButtonModule
   ],
   templateUrl: './select-attachments.component.html',
   styleUrl: './select-attachments.component.scss'
