@@ -36,7 +36,7 @@ export class ProgressService {
   }
 
   async delete(dto: ProgressDto) {
-    const response = await this.client.collection(this.entityName).delete(dto);
+    const response = await this.client.collection(this.entityName).delete(dto.id);
     return response;
   }  
 

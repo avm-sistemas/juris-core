@@ -36,7 +36,7 @@ export class PartiesInvolvedService {
   }
 
   async delete(dto: PartiesInvolvedDto) {
-    const response = await this.client.collection(this.entityName).delete(dto);
+    const response = await this.client.collection(this.entityName).delete(dto.id);
     return response;
   }  
 

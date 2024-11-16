@@ -36,7 +36,7 @@ export class CustomerService {
   }
 
   async delete(dto: CustomerDto) {
-    const response = await this.client.collection(this.entityName).delete(dto);
+    const response = await this.client.collection(this.entityName).delete(dto.id);
     return response;
   }  
 
