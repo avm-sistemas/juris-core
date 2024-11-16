@@ -9,7 +9,7 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
 import {LayoutModule} from '@angular/cdk/layout';
 import { StoreService } from '../services/store.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslatorComponent } from './core/translator/translator.component';
+import { TranslatorComponent } from './juris/shared/translator/translator.component';
 
 @Component({
   selector: 'app-root',

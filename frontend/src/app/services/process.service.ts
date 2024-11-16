@@ -41,7 +41,7 @@ export class ProcessService {
   }
 
   async delete(dto: ProcessDto) {
-    const response = await this.client.collection(this.entityName).delete(dto);
+    const response = await this.client.collection(this.entityName).delete(dto.id);
     return response;
   }  
 

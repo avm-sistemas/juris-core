@@ -44,7 +44,7 @@ export class AttachmentService {
   }
 
   async delete(dto: AttachmentDto) {
-    const response = await this.client.collection(this.entityName).delete(dto);
+    const response = await this.client.collection(this.entityName).delete(dto.id);
     return response;
   }  
 
